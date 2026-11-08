@@ -312,4 +312,1391 @@
                     <p class="text-xs text-slate-600">Pengawas Sekolah Ahli Madya (IV/c) ke Ahli Utama (IV/d)</p>
                 </div>
                 <div class="text-right">
-                    <span id="pdfTanggal" class=
+                    <span id="pdfTanggal" class="text-[10px] text-slate-500 block">Tanggal Execution</span>
+                    <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-[10px] font-bold rounded-lg inline-block mt-1">Kompetensi Level 5 (AKM)</span>
+                </div>
+            </div>
+
+            <!-- Identitas & Rekap -->
+            <div class="grid grid-cols-2 gap-4 mb-6 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div>
+                    <p class="mb-1"><strong>Nama Peserta:</strong> <span id="pdfNama">-</span></p>
+                    <p class="mb-1"><strong>NIP:</strong> <span id="pdfNip">-</span></p>
+                    <p><strong>Instansi/Unit Kerja:</strong> <span id="pdfUnit">-</span></p>
+                </div>
+                <div>
+                    <p class="mb-1"><strong>Paket Ujian:</strong> <span id="pdfPaketTitle">-</span></p>
+                    <p class="mb-1"><strong>Skor Perolehan:</strong> <span id="pdfSkor" class="font-bold text-indigo-900 text-xs">0 / 100</span></p>
+                    <p><strong>Status Kualifikasi:</strong> <span id="pdfPredikat" class="font-bold text-emerald-700">-</span></p>
+                </div>
+            </div>
+
+            <!-- Detail Lembar Jawaban -->
+            <h3 class="text-xs font-bold text-slate-800 mb-3 border-b pb-1">Rincian Hasil Pengerjaan Soal:</h3>
+            <div id="pdfQuestionDetails" class="space-y-4 text-xs">
+                <!-- Content generated via JS -->
+            </div>
+
+            <div class="mt-8 border-t pt-4 text-center text-[10px] text-slate-400">
+                Dokumen Hasil Evaluasi Simulasi UKKJ Mandiri &bull; Generatif AI Dynamic Powered &bull; Kemendikbudristek RI Standard &bull; Pengembang: IFS
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-[11px] text-slate-500">
+        <p>Simulasi Uji Kompetensi Kenaikan Jenjang Pengawas Sekolah Ahli Utama &bull; Real-Time AI Generation Level 5 &bull; Pengembang: <strong>IFS</strong></p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // ----------------------------------------------------
+        // BANK SOAL DEFAULT 6 PAKET (60 SOAL LEVEL 5 FULL)
+        // ----------------------------------------------------
+        const defaultPaketData = [
+            {
+                id: 1,
+                title: "Paket 1: Perumusan & Evaluasi Kebijakan Daerah",
+                questions: [
+                    {
+                        questionNumber: 1,
+                        tags: ["Evaluasi Kebijakan", "Rapor Pendidikan", "Kepemimpinan Strategis"],
+                        stimulus: "Berdasarkan rilis Rapor Pendidikan Provinsi 2025, indikator Kemampuan Numerasi di 65% kabupaten/kota mengalami stagnasi selama 2 tahun berturut-turut, meskipun anggaran pelatihan guru telah ditingkatkan.",
+                        question: "Sebagai Pengawas Sekolah Ahli Utama, langkah strategis berskala makro yang paling tepat Anda lakukan untuk membenahi masalah ini adalah...",
+                        answerOptions: [
+                            { text: "Mewajibkan seluruh kepala sekolah menyusun ulang Perencanaan Berbasis Data (PBD) dengan fokus anggaran pada numerasi.", isCorrect: false, rationale: "Langkah ini bersifat instruktif dan operasional individual sekolah, belum mencerminkan penguatan sistemik tingkat daerah oleh Ahli Utama." },
+                            { text: "Mengembangkan kerangka kerja (framework) model pendampingan numerasi daerah dan merumuskan naskah rekomendasi kebijakan bagi Dinas Pendidikan.", isCorrect: true, rationale: "Pengawas Ahli Utama berfokus pada evaluasi sistemik, pengembangan model pendampingan makro, dan perumusan rekomendasi kebijakan daerah." },
+                            { text: "Melakukan supervisi akademik secara langsung ke kelas-kelas Matematika di seluruh sekolah dengan nilai Rapor Pendidikan rendah.", isCorrect: false, rationale: "Supervisi kelas individual adalah tugas operasional yang dominan pada tingkat Pengawas Ahli Pertama/Muda/Madya." },
+                            { text: "Mengadakan lomba numerasi antarsekolah untuk memotivasi guru dan siswa dalam meningkatkan nilai Rapor Pendidikan.", isCorrect: false, rationale: "Kompetensi tidak menyelesaikan akar masalah kualitas pembelajaran dan tidak memberikan dampak pembenahan sistemik." }
+                        ],
+                        hint: "Fokus peran Ahli Utama adalah perumusan kebijakan makro dan penyusunan model/sistem pendampingan skala daerah."
+                    },
+                    {
+                        questionNumber: 2,
+                        tags: ["Policy Brief", "Advokasi Kebijakan", "Disparitas Mutu"],
+                        stimulus: "Data evaluasi menunjukkan disparitas mutu yang tajam antara sekolah di pusat kota dan sekolah di wilayah 3T (Tertinggal, Terdepan, Terluar). Sekolah 3T kekurangan akses pendampingan mutu yang berkelanjutan.",
+                        question: "Sebagai Pengawas Utama yang menyusun naskah Kebijakan Publik (Policy Brief), rekomendasi strategis utama yang harus diberikan adalah...",
+                        answerOptions: [
+                            { text: "Mewajibkan rotasi guru berprestasi dari kota ke daerah 3T setiap 6 bulan sekali.", isCorrect: false, rationale: "Kebijakan reaktif tanpa analisis sistemik manajemen SDM berisiko menciptakan konflik baru." },
+                            { text: "Sintesis data Rapor Pendidikan Daerah, peta kebutuhan afirmasi sumber daya, dan model pendampingan terintegrasi khusus daerah 3T.", isCorrect: true, rationale: "Rekomendasi Ahli Utama didasarkan pada data komprehensif (PBD daerah) dan solusi berprinsip keadilan sosial serta kemitraan." },
+                            { text: "Menyediakan anggaran BOS tambahan yang besarnya persis sama untuk seluruh sekolah di daerah perkotaan dan 3T.", isCorrect: false, rationale: "Pembagian seragam (equality) sering kali memicu ketidakadilan (equity) bagi sekolah dengan kondisi khusus 3T." },
+                            { text: "Menurunkan standar kelulusan nasional khusus untuk sekolah binaan di wilayah 3T.", isCorrect: false, rationale: "Menurunkan standar melanggar regulasi nasional dan merugikan hak peserta didik atas pendidikan berkualitas." }
+                        ],
+                        hint: "Rekomendasi kebijakan Ahli Utama berbasis keadilan afirmasi (equity) dan evidence-based policy."
+                    },
+                    {
+                        questionNumber: 3,
+                        tags: ["Evaluasi Program", "Perencanaan Berbasis Data", "Kebijakan Publik"],
+                        stimulus: "Dinas Pendidikan daerah merencanakan alokasi anggaran pelatihan massal guru tanpa memanfaatkan hasil analisis Rapor Pendidikan Daerah.",
+                        question: "Tindakan Pengawas Ahli Utama yang menunjukkan integritas dan profesionalisme tinggi dalam pengawalan kebijakan adalah...",
+                        answerOptions: [
+                            { text: "Menyetujui usulan tersebut demi menjaga keharmonisan hubungan kerja dengan jajaran pejabat dinas.", isCorrect: false, rationale: "Mengorbankan integritas dan efektivitas pembenahan mutu demi kompromi relasional." },
+                            { text: "Menyajikan data komparatif Rapor Pendidikan secara profesional dan memberikan opsi rekomendasi program berbasis PBD Daerah.", isCorrect: true, rationale: "Tindakan assertif-profesional yang menggunakan data berbasis bukti untuk memberikan advokasi kebijakan berbobot." },
+                            { text: "Menolak secara konfrontatif dalam rapat umum dan mengancam melaporkan dinas ke kementerian pusat.", isCorrect: false, rationale: "Sikap konfrontatif merusak tata kelola komunikasi profesional organisasi." },
+                            { text: "Bersikap pasif dan tidak memberikan pendapat selama proses pembahasan anggaran.", isCorrect: false, rationale: "Menunjukkan pembiaran dan kegagalan fungsi advokasi kebijakan berbasis data." }
+                        ],
+                        hint: "Gunakan pendekatan berbasis data (PBD) secara profesional dan konstruktif."
+                    },
+                    {
+                        questionNumber: 4,
+                        tags: ["Manajemen Risiko", "Evaluasi Kebijakan", "Mutu Pendidikan"],
+                        stimulus: "Pelaksanaan program 디지털isasi sekolah di suatu daerah mengalami hambatan besar akibat rendahnya literasi digital pendidik di sekolah terpencil.",
+                        question: "Bagaimana Pengawas Utama merumuskan solusi evaluatif terhadap risiko kebijakan tersebut?",
+                        answerOptions: [
+                            { text: "Menghentikan total program digitalisasi di sekolah terpencil dan mengalihkan dana ke sekolah kota.", isCorrect: false, rationale: "Solusi diskriminatif yang memperlebar jurang digital." },
+                            { text: "Merumuskan model pendampingan sejawat (peer-coaching) berbasis komunitas belajar dan penyesuaian infrastruktur bertahap.", isCorrect: true, rationale: "Memberikan kerangka pemecahan masalah inklusif dan berkelanjutan bagi sistem daerah." },
+                            { text: "Memberikan teguran tertulis kepada guru yang belum mampu mengoperasikan perangkat digital.", isCorrect: false, rationale: "Pendekatan punitive tidak menyelesaikan akar masalah kapasitas SDM." },
+                            { text: "Menyerahkan sepenuhnya penyelesaian masalah teknis digital kepada penyedia vendor aplikasi.", isCorrect: false, rationale: "Mengabaikan tanggung jawab pembinaan pedagogis dan pendampingan mutu." }
+                        ],
+                        hint: "Solusi Ahli Utama berbasis penguatan komunitas belajar dan berkelanjutan."
+                    },
+                    {
+                        questionNumber: 5,
+                        tags: ["Standar Mutu", "Akreditasi", "Analisis Sistemik"],
+                        stimulus: "Hasil akreditasi menunjukkan 40% sekolah menengah di wilayah binaan mengalami penurunan peringkat dari A ke B.",
+                        question: "Evaluasi sistemik yang wajib dipimpin oleh Pengawas Sekolah Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Melakukan audit dokumen mutu secara acak pada sekolah yang turun akreditasinya.", isCorrect: false, rationale: "Hanya memeriksa aspek administratif formalitas permukaan." },
+                            { text: "Memandu tim pengawas melakukan meta-analisis ketercapaian 8 Standard Nasional Pendidikan dan merancang peta jalan pemulihan mutu.", isCorrect: true, rationale: "Memimpin analisis makro dan menyusun peta jalan pemulihan mutu terintegrasi tingkat daerah." },
+                            { text: "Menyarankan sekolah untuk mengajukan keberatan resmi ke Badan Akreditasi Nasional.", isCorrect: false, rationale: "Respon defensif tanpa evaluasi internal mendalam." },
+                            { text: "Memindahkan Pengawas Madya/Muda yang membina sekolah-sekolah tersebut ke wilayah lain.", isCorrect: false, rationale: "Tindakan administratif yang tidak menyasar akar masalah mutu pembelajaran." }
+                        ],
+                        hint: "Meta-analisis dan perancangan peta jalan (roadmap) pemulihan mutu adalah tugas Ahli Utama."
+                    },
+                    {
+                        questionNumber: 6,
+                        tags: ["Harmonisasi Regulasi", "Merdeka Belajar", "Kepemimpinan Makro"],
+                        stimulus: "Terjadi resistensi dari sebagian regulasi daerah (Perda) lama yang belum selaras dengan prinsip fleksibilitas Kurikulum Merdeka.",
+                        question: "Peran advokasi kepemimpinan yang dapat diambil Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Mengabaikan Perda lama dan menginstruksikan sekolah hanya mematuhi regulasi kementerian.", isCorrect: false, rationale: "Memicu konflik tata kelola hukum daerah." },
+                            { text: "Menyusun kajian harmonisasi kebijakan untuk disampaikan kepada Dewan Pendidikan dan Dinas Pendidikan guna penyelarasan regulasi.", isCorrect: true, rationale: "Mencerminkan peran Ahli Utama sebagai penyelarasi kebijakan publik di tingkat daerah." },
+                            { text: "Membiarkan sekolah memilih sendiri regulasi yang ingin diterapkan.", isCorrect: false, rationale: "Menciptakan ketidakpastian hukum di satuan pendidikan." },
+                            { text: "Mengkritik regulasi daerah di media massa agar mendapatkan perhatian publik.", isCorrect: false, rationale: "Melanggar kode etik komunikasi birokrasi profesional." }
+                        ],
+                        hint: "Advokasi dilakukan melalui kajian harmonisasi kebijakan secara birokratis profesional."
+                    },
+                    {
+                        questionNumber: 7,
+                        tags: ["Evaluasi Impact", "Transformasi Mutu", "Indikator Utama"],
+                        stimulus: "Evaluasi program pendampingan daerah perlu mengukur dampak jangka panjang (impact), bukan sekadar output kegiatan.",
+                        question: "Indikator keberhasilan utama dari sistem pendampingan mutu Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Kelengkapan 100% dokumen laporan supervisi pengawas tepat waktu.", isCorrect: false, rationale: "Hanya indikator kelengkapan administratif." },
+                            { text: "Tumbuhnya budaya refleksi mandiri, kepemimpinan pembelajaran kepala sekolah, dan perbaikan berkelanjutan iklim belajar.", isCorrect: true, rationale: "Menunjukkan transformasi budaya dan dampak dampak (outcome/impact) otentik." },
+                            { text: "Jumlah sertifikat pelatihan yang dikumpulkan guru dalam satu tahun.", isCorrect: false, rationale: "Indikator output kuantitatif pasif." },
+                            { text: "Terselenggaranya rapat rutin bulanan pengawas dan kepala sekolah.", isCorrect: false, rationale: "Indikator proses aktivitas rutin." }
+                        ],
+                        hint: "Pilih indikator yang mencerminkan transformasi budaya dan dampak jangka panjang."
+                    },
+                    {
+                        questionNumber: 8,
+                        tags: ["Kemitraan Daerah", "Pembiayaan Pendidikan", "Strategic Alliances"],
+                        stimulus: "Anggaran daerah untuk peningkatan mutu pendidikan sangat terbatas.",
+                        question: "Inisiasi pengambilan keputusan skala makro oleh Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Meminta sekolah memungut iuran tambahan dari orang tua murid secara serentak.", isCorrect: false, rationale: "Melanggar regulasi pembiayaan dan membebani masyarakat." },
+                            { text: "Menginisiasi konsorsium kemitraan lintas sektor (CSR Perusahaan, Perguruan Tinggi, NGO) berbasis peta jalan mutu.", isCorrect: true, rationale: "Membangun kemitraan strategis (Cross-Sector Partnership) untuk efisiensi mutu daerah." },
+                            { text: "Mengurangi jumlah hari sekolah untuk menghemat biaya operasional.", isCorrect: false, rationale: "Merugikan hak belajar murid." },
+                            { text: "Menunggu alokasi anggaran tambahan dari pemerintah pusat tanpa melakukan inisiatif.", isCorrect: false, rationale: "Sikap pasif tidak mencerminkan kepemimpinan strategis." }
+                        ],
+                        hint: "Fokus pada pembuatan kerangka kemitraan lintas sektor (Cross-Sector Partnership)."
+                    },
+                    {
+                        questionNumber: 9,
+                        tags: ["Data-Driven Decision", "Analisis Tren", "Mutu Pendidikan"],
+                        stimulus: "Data Rapor Pendidikan menunjukkan tren penurunan skor Iklim Keamanan Sekolah di kabupaten akibat meningkatnya kasus cyberbullying.",
+                        question: "Rekomendasi kebijakan jangka panjang dari Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Melarang total penggunaan ponsel cerdas bagi seluruh murid di luar dan di dalam sekolah.", isCorrect: false, rationale: "Pendekatan reaktif kaku yang tidak mendidik etika digital." },
+                            { text: "Merumuskan panduan daerah tentang Program Literasi Digital & Pencegahan Kekerasan Siber yang terintegrasi dalam kurikulum.", isCorrect: true, rationale: "Menyediakan panduan kerangka kerja sistemik untuk seluruh sekolah binaan." },
+                            { text: "Menyerahkan kasus siber sepenuhnya kepada aparat kepolisian lokal.", isCorrect: false, rationale: "Mengabaikan fungsi edukatif kelembagaan sekolah." },
+                            { text: "Menugaskan guru BK bekerja ekstra tanpa dukungan kebijakan daerah.", isCorrect: false, rationale: "Membebani individu tanpa perbaikan sistemik." }
+                        ],
+                        hint: "Rumuskan panduan dan kebijakan kerangka kerja terintegrasi skala daerah."
+                    },
+                    {
+                        questionNumber: 10,
+                        tags: ["Kepemimpinan Perubahan", "Sintesis Kebijakan", "Evaluasi Makro"],
+                        stimulus: "Banyak sekolah binaan merasa jenuh dengan perubahan regulasi yang dinilai terlalu cepat.",
+                        question: "Pendekatan kepemimpinan perubahan yang tepat dilakukan Ahli Utama untuk menjaga motivasi daerah adalah...",
+                        answerOptions: [
+                            { text: "Menginstruksikan sekolah mengabaikan perubahan baru dan fokus pada metode lama.", isCorrect: false, rationale: "Menghambat transformasi nasional." },
+                            { text: "Melakukan simplifikasi dan penyelarasan narasi kebijakan menjadi strategi praktis yang relevan dengan kebutuhan daerah.", isCorrect: true, rationale: "Menterjemahkan kebijakan makro menjadi strategi lokal yang mudah dipahami dan dieksekusi." },
+                            { text: "Memberikan ancaman sanksi bagi sekolah yang lambat beradaptasi.", isCorrect: false, rationale: "Menimbulkan kecemasan dan resistensi yang lebih besar." },
+                            { text: "Menyelenggarakan lomba sekolah terbaik versi regulasi baru.", isCorrect: false, rationale: "Solusi superfisial yang tidak mengatasi kejenuhan struktural." }
+                        ],
+                        hint: "Simplifikasi dan penyelarasan narasi kebijakan makro agar aplikatif di daerah."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Paket 2: Kepemimpinan Pembelajaran & Coaching for Coaches",
+                questions: [
+                    {
+                        questionNumber: 1,
+                        tags: ["Coaching for Coaches", "Pengembangan Sejawat", "Ahli Utama"],
+                        stimulus: "Pengawas Ahli Utama bertanggung jawab meningkatkan kapasitas pendampingan Pengawas Madya dan Muda di wilayahnya.",
+                        question: "Bentuk kegiatan yang mencerminkan peran 'Coach for Coaches' adalah...",
+                        answerOptions: [
+                            { text: "Memeriksa dan menandatangani laporan bulanan Pengawas Madya.", isCorrect: false, rationale: "Tugas verifikasi administrasi rutin." },
+                            { text: "Membimbing Pengawas Madya dalam merancang metode coaching reflektif dan memfasilitasi klinik konsultasi pendampingan.", isCorrect: true, rationale: "Mengembangkan kapasitas profesional pendampingan sejawat pengawas." },
+                            { text: "Mengambil alih tugas pembinaan sekolah yang gagal didampingi oleh Pengawas Muda.", isCorrect: false, rationale: "Tidak memberdayakan dan merusak pembagian peran." },
+                            { text: "Menilai kinerja Pengawas Madya menggunakan daftar periksa kehadiran.", isCorrect: false, rationale: "Penilaian administratif formalitas." }
+                        ],
+                        hint: "Fokus pada bimbingan metodologi coaching dan pengembangan kapasitas sejawat."
+                    },
+                    {
+                        questionNumber: 2,
+                        tags: ["Transformasi PKKS", "Evaluasi Reflektif", "Authentic Evidence"],
+                        stimulus: "Penilaian Kinerja Kepala Sekolah (PKKS) selama ini sering terjebak pada tumpukan berkas fisik tanpa dialog mutu.",
+                        question: "Perubahan paradigma penilaian yang harus dipelopori oleh Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Mengganti seluruh penilaian dengan tes tertulis pilihan ganda online.", isCorrect: false, rationale: "Tidak mengukur kompetensi kepemimpinan nyata." },
+                            { text: "Menggeser penilaian ke arah dialog reflektif berbasis bukti karya nyata (artifact/evidence) dan dampak pada siswa.", isCorrect: true, rationale: "Paradigma baru evaluasi kinerja berorientasi dialog mutu dan bukti otentik." },
+                            { text: "Menyerahkan PKKS sepenuhnya kepada komite sekolah.", isCorrect: false, rationale: "Mengabaikan peran evaluasi profesional pengawas." },
+                            { text: "Mewajibkan dokumen fisik dijilid rapi minimal 500 halaman.", isCorrect: false, rationale: "Memperparah beban administrasi formalitas." }
+                        ],
+                        hint: "Gunakan dialog reflektif dan bukti otentik (artifact/evidence)."
+                    },
+                    {
+                        questionNumber: 3,
+                        tags: ["Coaching TIRTA", "Resistensi Perubahan", "Kepemimpinan"],
+                        stimulus: "Seorang kepala sekolah senior menunjukkan sikap skeptis dan menolak menerapkan pembelajaran berdiferensiasi.",
+                        question: "Penerapan alur TIRTA yang tepat dilakukan Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Langsung memberikan teguran keras dan melaporkannya ke dinas.", isCorrect: false, rationale: "Pendekatan otoriter memicu konflik." },
+                            { text: "Menggali tujuan sekolah, mengidentifikasi potensi/tantangan, serta menyepakati rencana aksi mandiri kepala sekolah.", isCorrect: true, rationale: "Prinsip coaching TIRTA menggali kesadaran dan komitmen dari dalam diri kepala sekolah." },
+                            { text: "Membiarkan kepala sekolah tersebut tetap dengan metode lamanya.", isCorrect: false, rationale: "Sikap pembiaran mutu." },
+                            { text: "Mengirimkan instruksi tertulis berisi kewajiban pembelajaran berdiferensiasi.", isCorrect: false, rationale: "Pendekatan top-down tidak mengubah kesadaran." }
+                        ],
+                        hint: "Alur TIRTA: Tujuan, Identifikasi, Rencana Aksi, Tanggung Jawab (Commitment)."
+                    },
+                    {
+                        questionNumber: 4,
+                        tags: ["Budaya Refleksi", "Komunitas Belajar", "Transformasi Pembelajaran"],
+                        stimulus: "Banyak sekolah binaan memiliki Komunitas Belajar (Kombel) namun hanya bersifat papan nama tanpa aktivitas bermakna.",
+                        question: "Strategi Pengawas Utama untuk mengaktifkan budaya refleksi di Kombel adalah...",
+                        answerOptions: [
+                            { text: "Mewajibkan Kombel mengunggah foto kegiatan setiap hari ke media sosial.", isCorrect: false, rationale: "Formalitas dokumentasi luar." },
+                            { text: "Memfasilitasi pelatihan pemetaan masalah belajar berbasis data siswa dan membimbing tradisi refleksi rutin bulanan.", isCorrect: true, rationale: "Mendorong fokus Kombel pada pemecahan masalah nyata belajar siswa." },
+                            { text: "Memberikan sanksi finansial bagi sekolah yang Kombelnya pasif.", isCorrect: false, rationale: "Tindakan punitive merusak iklim belajar." },
+                            { text: "Mengambil alih kepemimpinan Kombel di setiap sekolah.", isCorrect: false, rationale: "Mengambil hak kemandirian komunitas." }
+                        ],
+                        hint: "Bimbing tradisi refleksi berbasis pemecahan masalah belajar siswa."
+                    },
+                    {
+                        questionNumber: 5,
+                        tags: ["Kepemimpinan Instruksional", "Supervisi Akademik", "Model Pendampingan"],
+                        stimulus: "Hasil pengamatan menunjukkan kepala sekolah belum mampu memberikan balikan (feedback) konstruktif kepada guru setelah observasi kelas.",
+                        question: "Bentuk bantuan yang diberikan Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Menggantikan kepala sekolah melakukan observasi ke seluruh kelas.", isCorrect: false, rationale: "Mematikan fungsi kepemimpinan kepala sekolah." },
+                            { text: "Melakukan pemodelan (modeling) teknik pasca-observasi dan melakukan kooching berpasangan bersama kepala sekolah.", isCorrect: true, rationale: "Memberikan keteladanan (modeling) dan mendampingi peningkatan kapasitas kepala sekolah." },
+                            { text: "Menyediakan draf balikan baku yang tinggal disalin oleh kepala sekolah.", isCorrect: false, rationale: "Mendorong mekanisme penyelesaian formalitas instan." },
+                            { text: "Menyarankan kepala sekolah membaca buku teori supervisi.", isCorrect: false, rationale: "Pendekatan teoritis tanpa praktik langsung." }
+                        ],
+                        hint: "Gunakan pendekatan pemodelan (modeling) dan pendampingan kolaboratif."
+                    },
+                    {
+                        questionNumber: 6,
+                        tags: ["Coaching Culture", "Skala Daerah", "Peta Jalan"],
+                        stimulus: "Dinas Pendidikan ingin membangun 'Coaching Culture' di seluruh satuan pendidikan dalam wilayah kabupaten.",
+                        question: "Pengawas Ahli Utama merumuskan strategi tersebut melalui...",
+                        answerOptions: [
+                            { text: "Menunjuk satu sekolah percontohan saja tanpa rencana pengimbasan.", isCorrect: false, rationale: "Skala terbatas dan tidak berdampak sistemik." },
+                            { text: "Menyusun Kerangka Kerja Coaching Daerah, melatih tim Pengawas Pembina, dan memandu sertifikasi internal coaching.", isCorrect: true, rationale: "Merumuskan kerangka kerja sistemik dan melembaga di tingkat daerah." },
+                            { text: "Mewajibkan seluruh guru mengikuti kursus coaching berbayar.", isCorrect: false, rationale: "Membebankan biaya tanpa jaminan standar mutu." },
+                            { text: "Mengganti nama kegiatan rapat koordinasi menjadi kegiatan coaching.", isCorrect: false, rationale: "Perubahan istilah superfisial tanpa perubahan substansi." }
+                        ],
+                        hint: "Penyusunan kerangka kerja sistemik dan pelembagaan skala daerah."
+                    },
+                    {
+                        questionNumber: 7,
+                        tags: ["Evaluasi Kepala Sekolah", "Manajemen Kinerja", "Ahli Utama"],
+                        stimulus: "Seorang kepala sekolah berprestasi tinggi dalam nilai akademik siswa, tetapi memiliki skor Iklim Inklusivitas Rapor Pendidikan yang sangat rendah.",
+                        question: "Pendekatan coaching yang paling objektif dari Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Membiarkannya karena hasil nilai akademik siswa sudah sangat memuaskan.", isCorrect: false, rationale: "Mengabaikan prinsip pendidikan inklusif." },
+                            { text: "Memfasilitasi dialog reflektif tentang keseimbangan antara capaian akademik dan iklim inklusif aman bagi seluruh siswa.", isCorrect: true, rationale: "Mendorong kesadaran holistik atas seluruh indikator Rapor Pendidikan." },
+                            { text: "Langsung menurunkan nilai kinerja kepala sekolah tersebut secara drastis.", isCorrect: false, rationale: "Tindakan sepihak tanpa pembinaan reflektif." },
+                            { text: "Merekomendasikan pemindahan kepala sekolah ke sekolah lain.", isCorrect: false, rationale: "Tidak menyelesaikan masalah kapasitas kepemimpinan." }
+                        ],
+                        hint: "Fasilitasi dialog reflektif holistik atas seluruh indikator mutu."
+                    },
+                    {
+                        questionNumber: 8,
+                        tags: ["Peer Mentoring", "Pengawas Sekolah", "Profesionalisme"],
+                        stimulus: "Terdapat kesenjangan kualitas pendampingan yang cukup besar antara Pengawas Senior dan Pengawas Baru.",
+                        question: "Langkah terstruktur Pengawas Ahli Utama untuk mengatasinya adalah...",
+                        answerOptions: [
+                            { text: "Memisahkan wilayah binaan berdasarkan senioritas pengawas.", isCorrect: false, rationale: "Memperlebar kesenjangan pengetahuan." },
+                            { text: "Merancang program Mentoring Berpasangan (Peer-Mentoring System) dan berbagi praktik baik supervisi berkala.", isCorrect: true, rationale: "Membangun sistem mentoring internal yang terstruktur dan kolaboratif." },
+                            { text: "Memberikan penugasan lebih banyak kepada pengawas baru agar cepat belajar.", isCorrect: false, rationale: "Beban kerja tidak seimbang tanpa bimbingan." },
+                            { text: "Menyerahkan pembinaan pengawas baru sepenuhnya kepada BKD.", isCorrect: false, rationale: "Mengabaikan tanggung jawab pembinaan fungsional." }
+                        ],
+                        hint: "Rancang program Peer-Mentoring System antar pengawas secara terstruktur."
+                    },
+                    {
+                        questionNumber: 9,
+                        tags: ["Inovasi Pembelajaran", "Kepemimpinan Mutu", "Supervisi"],
+                        stimulus: "Banyak guru di sekolah binaan ragu mencoba inovasi media pembelajaran berbasis AI karena takut salah.",
+                        question: "Sikap kepemimpinan pengawas yang memerdekakan adalah...",
+                        answerOptions: [
+                            { text: "Melarang penggunaan AI sampai ada juknis resmi dari pusat.", isCorrect: false, rationale: "Menghambat kreativitas dan adaptasi teknologi." },
+                            { text: "Mendorong lingkungan belajar aman berinovasi (psychological safety) dan memfasilitasi etika penggunaan AI dalam pembelajaran.", isCorrect: true, rationale: "Menciptakan ruang aman berinovasi disertai panduan etika profesional." },
+                            { text: "Mewajibkan seluruh guru membuat modul AI dalam waktu satu minggu.", isCorrect: false, rationale: "Pemaksaan tanpa pendampingan memicu kecemasan." },
+                            { text: "Menilai rendah guru yang tidak menggunakan AI dalam mengajar.", isCorrect: false, rationale: "Penilaian tidak adil tanpa memperhatikan konteks kesiapan." }
+                        ],
+                        hint: "Ciptakan lingkungan berinovasi yang aman (psychological safety) dan edukatif."
+                    },
+                    {
+                        questionNumber: 10,
+                        tags: ["Evaluasi Reflektif", "Umpan Balik", "Ahli Utama"],
+                        stimulus: "Seorang Pengawas Ahli Utama ingin mengukur sejauh mana dampak sesi coaching yang telah ia berikan kepada para Kepala Sekolah Binaan.",
+                        question: "Metode evaluasi yang paling otentik adalah...",
+                        answerOptions: [
+                            { text: "Meminta kepala sekolah mengisi formulir kepuasan layanan 5 bintang.", isCorrect: false, rationale: "Hanya mengukur persepsi kepuasan permukaan." },
+                            { text: "Melakukan observasi perubahan perilaku kepemimpinan kepala sekolah dan bukti perbaikan iklim sekolah binaannya.", isCorrect: true, rationale: "Mengukur perubahan perilaku nyata (behavior change) dan dampak organisasi." },
+                            { text: "Menghitung jumlah jam sesi coaching yang telah dilaksanakan.", isCorrect: false, rationale: "Hanya mengukur durasi proses input." },
+                            { text: "Meminta kepala sekolah membuat surat ucapan terima kasih.", isCorrect: false, rationale: "Tidak memiliki bobot evaluasi ilmiah." }
+                        ],
+                        hint: "Ukur perubahan perilaku nyata (behavioral change) dan dampak sekolah."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Paket 3: Manajemen Stratejik & Leading Change",
+                questions: [
+                    {
+                        questionNumber: 1,
+                        tags: ["Roadmap Daerah", "Leading Change", "Pengambilan Keputusan"],
+                        stimulus: "Dalam menyusun Peta Jalan (Roadmap) Transisi Pendidikan Daerah 5 Tahun, Pengawas Ahli Utama menghadapi perubahan cepat tren teknologi dan ketidakpastian anggaran.",
+                        question: "Pendekatan manajemen strategis yang paling tepat diterapkan adalah...",
+                        answerOptions: [
+                            { text: "Menyusun dokumen peta jalan yang sangat kaku agar tidak berubah-ubah.", isCorrect: false, rationale: "Ketidakfleksibelan memicu kegagalan adaptasi." },
+                            { text: "Merumuskan kerangka kerja adaptif (agile roadmap) dengan indikator capaian bertahap dan tinjauan berkala berbasis data.", isCorrect: true, rationale: "Prinsip manajemen strategis modern: adaptif (agile) dan berpatokan pada data empiris." },
+                            { text: "Menyerahkan pembuatan peta jalan kepada konsultan luar tanpa keterlibatan pengawas.", isCorrect: false, rationale: "Menghilangkan rasa kepemilikan dan konteks lokal." },
+                            { text: "Menunda pembuatan peta jalan sampai kondisi anggaran stabil.", isCorrect: false, rationale: "Menghilangkan arah strategis pembangunan mutu daerah." }
+                        ],
+                        hint: "Gunakan pendekatan kerangka kerja adaptif (agile roadmap) berorientasi data."
+                    },
+                    {
+                        questionNumber: 2,
+                        tags: ["Cross-Sector Partnership", "DUDI", "Link and Match"],
+                        stimulus: "Lulusan SMK di wilayah kabupaten mengalami tingkat pengangguran yang cukup tinggi karena ketidaksesuaian (mismatch) dengan kebutuhan industri lokal.",
+                        question: "Langkah strategis Pengawas Ahli Utama dalam kerangka kolaborasi inter-organisasi adalah...",
+                        answerOptions: [
+                            { text: "Menginstruksikan sekolah menambah jam pelajaran teori di kelas.", isCorrect: false, rationale: "Tidak menyelesaikan masalah link and match dengan industri." },
+                            { text: "Membangun Konsorsium Kemitraan SMK-DUDI skala daerah untuk penyelarasan kurikulum, magang guru, dan sertifikasi industri.", isCorrect: true, rationale: "Menciptakan ekosistem kemitraan strategis (Cross-Sector Partnership) yang sistemik." },
+                            { text: "Menyarankan siswa SMK untuk melanjutkan kuliah ke perguruan tinggi.", isCorrect: false, rationale: "Mengabaikan tujuan utama pendidikan vokasi." },
+                            { text: "Menyalahkan pihak industri yang tidak mau menerima lulusan lokal.", isCorrect: false, rationale: "Sikap menyalahkan tanpa solusi kolaboratif." }
+                        ],
+                        hint: "Bangun Konsorsium Kemitraan Lintas Sektor (Cross-Sector Partnership)."
+                    },
+                    {
+                        questionNumber: 3,
+                        tags: ["Leading Change", "Resistensi Kebijakan", "Manajemen Perubahan"],
+                        stimulus: "Ketika meluncurkan strategi pendampingan baru berbasis digital, 40% Pengawas Sekolah menunjukkan sikap pasif dan memilih cara manual lama.",
+                        question: "Tahapan manajemen perubahan (Kotter’s Change Model) yang dipimpin oleh Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Memberikan ancaman pemotongan tunjangan kinerja bagi pengawas yang menolak.", isCorrect: false, rationale: "Memperbesar resistensi dan merusak iklim kerja." },
+                            { text: "Membentuk Tim Penggerak Perubahan (Guiding Coalition), merumuskan urgensi perubahan, dan memberikan pendampingan intensif.", isCorrect: true, rationale: "Mengaplikasikan prinsip manajemen perubahan berkesinambungan dan kolaboratif." },
+                            { text: "Membatalkan seluruh rencana digitalisasi dan kembali ke cara manual.", isCorrect: false, rationale: "Bentuk kekalahan kepemimpinan perubahan." },
+                            { text: "Mengabaikan pengawas yang pasif dan hanya bekerja dengan pengawas yang mau.", isCorrect: false, rationale: "Membiarkan perpecahan organisasi." }
+                        ],
+                        hint: "Bentuk Guiding Coalition dan ciptakan urgensi perubahan positif."
+                    },
+                    {
+                        questionNumber: 4,
+                        tags: ["Pengambilan Keputusan", "Akuntabilitas", "Manajerial"],
+                        stimulus: "Pengawas Ahli Utama harus mengambil keputusan sulit terkait penggabungan (merger) beberapa sekolah dasar yang kekurangan murid di daerah terpencil.",
+                        question: "Dasar pengambilan keputusan strategis berintegritas adalah...",
+                        answerOptions: [
+                            { text: "Keputusan sepihak berdasarkan efisiensi anggaran daerah semata.", isCorrect: false, rationale: "Mengabaikan aksesibilitas dan dampak sosial murid." },
+                            { text: "Analisis komprehensif aksesibilitas murid, efektivitas mutu pembelajaran, serta studi kelayakan partisipatif warga.", isCorrect: true, rationale: "Pengambilan keputusan berbasis data multidimensi dan analisis dampak publik." },
+                            { text: "Menunda keputusan sampai periode kepemimpinan pengawas berakhir.", isCorrect: false, rationale: "Bentuk penghindaran tanggung jawab." },
+                            { text: "Menyerahkan keputusan sepenuhnya kepada pilihan kepala desa.", isCorrect: false, rationale: "Mengabaikan standar kelayakan teknis pendidikan." }
+                        ],
+                        hint: "Analisis data komprehensif multidimensi dan studi kelayakan partisipatif."
+                    },
+                    {
+                        questionNumber: 5,
+                        tags: ["Manajemen Krisis", "Kepemimpinan Daerah", "Mitigasi"],
+                        stimulus: "Suatu wilayah mengalami bencana alam yang merusak infrastruktur 15 sekolah binaan di tengah semester.",
+                        question: "Respon kepemimpinan krisis yang wajib disusun oleh Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Meliburkan seluruh siswa sampai bangunan sekolah baru selesai dibangun.", isCorrect: false, rationale: "Merugikan keberlangsungan hak pendidikan anak." },
+                            { text: "Merumuskan Kerangka Pembelajaran Darurat Bencana, mobilisasi ruang belajar alternatif, dan pendampingan psikososial.", isCorrect: true, rationale: "Respon krisis terintegrasi yang menjamin keberlangsungan layanan pendidikan aman." },
+                            { text: "Meminta guru dan siswa membangun sendiri ruang kelas darurat.", isCorrect: false, rationale: "Mengabaikan keselamatan dan dukungan sumber daya." },
+                            { text: "Menunggu instruksi detail dari pemerintah pusat tanpa aksi daerah.", isCorrect: false, rationale: "Ketiadaan kepemimpinan krisis di tingkat lokal." }
+                        ],
+                        hint: "Rumuskan Kerangka Pembelajaran Darurat Bencana & Pendampingan Psikososial."
+                    },
+                    {
+                        questionNumber: 6,
+                        tags: ["Manajemen SDM", "Peta Kompetensi", "Pengawas Utama"],
+                        stimulus: "Hasil pemetaan menunjukkan ketimpangan keahlian di antara tim pengawas sekolah (sebagian ahli teknologi, sebagian ahli hukum, sebagian belum memadai).",
+                        question: "Langkah optimalisasi struktur SDM Pengawas oleh Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Membagi penugasan wilayah secara acak tanpa memperhatikan kompetensi.", isCorrect: false, rationale: "Tidak mengoptimalkan potensi keahlian tim." },
+                            { text: "Menyusun Matriks Keahlian Tim (Skill Matrix) dan membentuk Tim Pendamping Mutu Silang (Cross-Functional Team).", isCorrect: true, rationale: "Manajemen SDM strategis: memanfaatkan kekuatan saling melengkapi antar-anggota tim." },
+                            { text: "Mengusulkan pensiun dini bagi pengawas yang belum menguasai teknologi.", isCorrect: false, rationale: "Solusi ekstrem yang tidak humanistis." },
+                            { text: "Membiarkan setiap pengawas bekerja sendiri-sendiri sesuai gayanya.", isCorrect: false, rationale: "Tidak ada sinergi organisasi." }
+                        ],
+                        hint: "Gunakan Matriks Keahlian (Skill Matrix) dan bentuk Cross-Functional Team."
+                    },
+                    {
+                        questionNumber: 7,
+                        tags: ["Tata Kelola", "Akuntabilitas Publik", "Pengawasan"],
+                        stimulus: "Ditemukan indikasi ketidaksesuaian penggunaan dana alokasi khusus (DAK) fisik di beberapa sekolah binaan.",
+                        question: "Sikap kepemimpinan berintegritas dari Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Menutup-nutupi temuan demi menjaga nama baik dinas pendidikan.", isCorrect: false, rationale: "Pelanggaran integritas dan hukum." },
+                            { text: "Melakukan verifikasi objektif, memberikan rekomendasi perbaikan tata kelola, dan meneruskan laporan ke audit internal (Inspektorat).", isCorrect: true, rationale: "Menjaga transparansi, akuntabilitas, dan kepatuhan pada regulasi publik." },
+                            { text: "Meminta kompensasi finansial agar laporan ketidaksesuaian diubah.", isCorrect: false, rationale: "Tindakan koruptif." },
+                            { text: "Langsung menghakimi kepala sekolah di media sosial.", isCorrect: false, rationale: "Melanggar etika dan prosedur hukum birokrasi." }
+                        ],
+                        hint: "Lakukan verifikasi objektif dan rekomendasikan ke audit internal resmi."
+                    },
+                    {
+                        questionNumber: 8,
+                        tags: ["Visi Kepemimpinan", "Pendidikan Berkelanjutan", "Ahli Utama"],
+                        stimulus: "Pengawas Ahli Utama diminta mempresentasikan Visi Pengembangan Pendidikan Daerah 10 Tahun Ke Depan di hadapan DPRD.",
+                        question: "Substansi paparan yang paling mencerminkan kapasitas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Daftar pengadaan sarana fisik dan gedung sekolah baru.", isCorrect: false, rationale: "Hanya berfokus pada infrastruktur fisik teknis." },
+                            { text: "Strategi transformasi ekosistem belajar berdaya saing, inklusif, berkarakter, dan peta jalan pemenuhan SDM unggul.", isCorrect: true, rationale: "Visi holistik mendasar yang mencakup transformasi ekosistem dan karakter." },
+                            { text: "Laporan rekapitulasi nilai ujian siswa tahun lalu.", isCorrect: false, rationale: "Hanya data historis tanpa pandangan masa depan." },
+                            { text: "Usulan kenaikan tunjangan jabatan bagi pengawas sekolah.", isCorrect: false, rationale: "Fokus pada kepentingan kelompok internal." }
+                        ],
+                        hint: "Gambarkan transformasi ekosistem belajar holistik dan berdaya saing."
+                    },
+                    {
+                        questionNumber: 9,
+                        tags: ["Inovasi Daerah", "Knowledge Management", "Replikasi"],
+                        stimulus: "Salah satu sekolah binaan berhasil menciptakan inovasi pendampingan berbasis komunitas yang sangat efektif.",
+                        question: "Tindakan Pengawas Ahli Utama dalam kerangka Manajemen Pengetahuan (Knowledge Management) adalah...",
+                        answerOptions: [
+                            { text: "Menyimpan informasi inovasi tersebut hanya untuk sekolah yang bersangkutan.", isCorrect: false, rationale: "Menghambat penyebaran praktik baik." },
+                            { text: "Kodifikasi praktik baik tersebut menjadi model baku daerah dan mengorganisir forum replikasi bagi sekolah lain.", isCorrect: true, rationale: "Melakukan kodifikasi, penyetandaran, dan mefasilitasi replikasi skala luas." },
+                            { text: "Mengklaim inovasi tersebut sebagai karya pribadi Pengawas Utama.", isCorrect: false, rationale: "Pelanggaran etika dan keadilan akademis." },
+                            { text: "Menyarankan sekolah menjual inovasi tersebut ke pihak luar.", isCorrect: false, rationale: "Mengomersialkan praktik baik pendidikan." }
+                        ],
+                        hint: "Kodifikasi praktik baik dan fasilitasi replikasi skala daerah."
+                    },
+                    {
+                        questionNumber: 10,
+                        tags: ["Evaluasi Strategis", "Efisiensi Organisasi", "Supervisi"],
+                        stimulus: "Struktur organisasi pengawas sekolah saat ini dirasakan terlalu birokratis dan memperlambat respon pendampingan.",
+                        question: "Rekomendasi pembenahan struktur dari Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Menambah strata birokrasi baru agar jalur komando lebih jelas.", isCorrect: false, rationale: "Memperparah hambatan birokrasi." },
+                            { text: "Merekomendasikan model organisasi yang lincah (agile organization) berbasis tim kerja fungsional dan berbasis wilayah berbasis kebutuhan.", isCorrect: true, rationale: "Restrukturisasi strategis menuju organisasi lincah (agile) dan responsif." },
+                            { text: "Membubarkan asosiasi pengawas sekolah yang ada.", isCorrect: false, rationale: "Solusi tidak relevan dan merusak wadah profesi." },
+                            { text: "Membiarkan struktur lama berjalan apa adanya.", isCorrect: false, rationale: "Sikap pembiaran efisiensi." }
+                        ],
+                        hint: "Rekomendasikan model organisasi lincah (agile) berbasis tim fungsional."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Paket 4: Kepemimpinan Sosio-Kultural & TPPK",
+                questions: [
+                    {
+                        questionNumber: 1,
+                        tags: ["TPPK", "Iklim Sekolah Aman", "Sosio-Kultural"],
+                        stimulus: "Kasus perundungan (bullying) verbal dan fisik ditemukan meningkat di beberapa sekolah menengah binaan, namun pihak sekolah cenderung menutup-nutupi.",
+                        question: "Respon kepemimpinan berbasis regulasi dan integritas oleh Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Mendukung sekolah merahasiakan kasus agar reputasi daerah tidak tercoreng.", isCorrect: false, rationale: "Melanggar integritas dan membahayakan keselamatan murid." },
+                            { text: "Memandu penegakan mekanisme TPPK (Tim Pencegahan & Penanganan Kekerasan), pembinaan pemulihan korban, dan pembenahan iklim sekolah.", isCorrect: true, rationale: "Solusi kelembagaan komprehensif sesuai regulasi pencegahan kekerasan nasional." },
+                            { text: "Mengeluarakan siswa pelaku perundungan secara serentak tanpa pembinaan.", isCorrect: false, rationale: "Melanggar hak anak atas pendidikan." },
+                            { text: "Menyerahkan kasus sepenuhnya kepada orang tua murid untuk diselesaikan secara pribadi.", isCorrect: false, rationale: "Melepas tanggung jawab kelembagaan sekolah." }
+                        ],
+                        hint: "Tegakkan mekanisme TPPK terstruktur dan pembenahan iklim sekolah aman."
+                    },
+                    {
+                        questionNumber: 2,
+                        tags: ["Inklusi Sosial", "Kearifan Lokal", "Kepemimpinan"],
+                        stimulus: "Terjadi penolakan dari sebagian warga masyarakat adat terhadap penerapan program inklusi bagi anak berkebutuhan khusus (ABK) di sekolah lokal.",
+                        question: "Pendekatan Sosio-Kultural yang wajib diambil Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Memaksa masyarakat menerima program dengan ancaman sanksi hukum.", isCorrect: false, rationale: "Memicu konflik sosial yang lebih dalam." },
+                            { text: "Menyelenggarakan dialog inklusif bersama tokoh adat/masyarakat untuk mendesain pembelajaran inklusif yang selaras kearifan lokal.", isCorrect: true, rationale: "Menggabungkan prinsip sosio-kultural inklusif dan edukasi bernuansa budaya lokal." },
+                            { text: "Membatalkan program inklusi di sekolah tersebut.", isCorrect: false, rationale: "Mencabut hak ABK atas pendidikan setara." },
+                            { text: "Memindahkan ABK ke sekolah luar daerah yang jauh.", isCorrect: false, rationale: "Diskriminasi lokasi pendidikan." }
+                        ],
+                        hint: "Dialog inklusif bersama tokoh adat dengan mengintegrasikan nilai lokal."
+                    },
+                    {
+                        questionNumber: 3,
+                        tags: ["Perekat Bangsa", "Keberagaman", "Kompetensi Sosio-Kultural"],
+                        stimulus: "Dalam suatu sekolah binaan, terjadi ketegangan antar-guru akibat perbedaan latar belakang suku dan pandangan politik lokal.",
+                        question: "Tindakan pengawas sekolah sebagai perekat bangsa (Level 5) adalah...",
+                        answerOptions: [
+                            { text: "Memihak kepada kelompok guru mayoritas agar kondisi segera tenang.", isCorrect: false, rationale: "Menghancurkan keadilan dan netralitas pengawas." },
+                            { text: "Membangun ruang dialog netral, menguatkan kesepakatan etika profesi, dan memfasilitasi program nilai kebhinekaan di sekolah.", isCorrect: true, rationale: "Menjalankan peran perekat bangsa, menjaga netralitas, dan membangun kohesi sosial." },
+                            { text: "Memindahkan seluruh guru yang terlibat konflik ke sekolah yang berbeda.", isCorrect: false, rationale: "Solusi pemisahan tanpa penyelesaian akar ketegangan." },
+                            { text: "Mengabaikan ketegangan selama tidak mengganggu jam mengajar.", isCorrect: false, rationale: "Pembiaran konflik internal yang merusak iklim sekolah." }
+                        ],
+                        hint: "Jadilah mediator netral, penguat kohesi sosial, dan perekat bangsa."
+                    },
+                    {
+                        questionNumber: 4,
+                        tags: ["Advokasi Kesetaraan", "Gender & Inklusi", "Sosio-Kultural"],
+                        stimulus: "Data menunjukkan tingkat putus sekolah anak perempuan di daerah pesisir sangat tinggi karena norma pernikahan dini.",
+                        question: "Langkah advokasi sosio-kultural yang disusun Pengawas Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Menyarankan sekolah menghapus data murid putus sekolah dari sistem.", isCorrect: false, rationale: "Pemalsuan data dan pelanggaran hukum." },
+                            { text: "Menyusun program advokasi lintas sektoral (Dinas Pendidikan, Dinas Perlindungan Anak, Tokoh Agama) dan fleksibilitas moda belajar.", isCorrect: true, rationale: "Solusi advokasi kebijakan lintas sektor berperspektif keadilan gender dan inklusi." },
+                            { text: "Memberikan teguran tertulis kepada orang tua anak.", isCorrect: false, rationale: "Pendekatan represif yang tidak mengatasi akar norma sosial." },
+                            { text: "Menyerahkan masalah sepenuhnya kepada dinas sosial.", isCorrect: false, rationale: "Mengabaikan peran pengawasan keterjangkauan layanan belajar." }
+                        ],
+                        hint: "Advokasi lintas sektoral dan penyediaan fleksibilitas moda belajar."
+                    },
+                    {
+                        questionNumber: 5,
+                        tags: ["Moderasi Beragama", "Iklim Kebhinekaan", "Rapor Pendidikan"],
+                        stimulus: "Indikator Iklim Kebhinekaan pada Rapor Pendidikan suatu daerah menunjukkan kategori 'Kuning' (Perlu Benah).",
+                        question: "Intervensi kepemimpinan strategis yang tepat oleh Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Mengganti seluruh guru agama di daerah tersebut.", isCorrect: false, rationale: "Tindakan drastis yang tidak menyasar akar masalah." },
+                            { text: "Merumuskan panduan integrasi Moderasi Beragama dan Kegiatan Pembelajaran Berbasis Project Profil Pelajar di tingkat daerah.", isCorrect: true, rationale: "Intervensi sistemik melalui panduan panduan integrasi kurikuler dan budaya sekolah." },
+                            { text: "Mewajibkan siswa menghafal simbol-simbol kebhinekaan.", isCorrect: false, rationale: "Pembelajaran kognitif hafalan permukaan." },
+                            { text: "Menolak hasil Rapor Pendidikan karena dianggap tidak akurat.", isCorrect: false, rationale: "Sikap defensif menolak data empiris." }
+                        ],
+                        hint: "Rumuskan panduan integrasi kurikuler Moderasi Beragama dan P5."
+                    },
+                    {
+                        questionNumber: 6,
+                        tags: ["Empati Sosial", "Kesejahteraan Guru", "Sosio-Kultural"],
+                        stimulus: "Banyak guru honorer di sekolah binaan mengalami penurunan motivasi akibat ketidakpastian kesejahteraan dan jaminan sosial.",
+                        question: "Langkah empati dan advokasi yang patut dilakukan Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Mengancam akan mengganti guru honorer dengan tenaga baru jika kinerja turun.", isCorrect: false, rationale: "Pendekatan tidak manusiawi yang merusak moral." },
+                            { text: "Mendorong skema tata kelola insentif daerah yang adil dan memfasilitasi penguatan kompetensi agar lolos seleksi ASN.", isCorrect: true, rationale: "Advokasi kebijakan Kesejahteraan berbasis keadilan sosial dan penguatan kapasitas." },
+                            { text: "Menyarankan guru honorer mencari pekerjaan sampingan di jam mengajar.", isCorrect: false, rationale: "Merugikan mutu pembelajaran siswa." },
+                            { text: "Meminta sekolah mengabaikan standar kualifikasi guru honorer.", isCorrect: false, rationale: "Kompromi negatif pada standar mutu." }
+                        ],
+                        hint: "Dorong skema insentif adil dan pendampingan kapasitas berkelanjutan."
+                    },
+                    {
+                        questionNumber: 7,
+                        tags: ["Resolusi Konflik", "Kemitraan Masyarakat", "Komunitas"],
+                        stimulus: "Terjadi sengketa lahan antara warga sekitar dengan salah satu sekolah binaan yang mengganggu proses belajar.",
+                        question: "Peran pengawas sekolah dalam penyelesaian masalah sosio-kultural ini adalah...",
+                        answerOptions: [
+                            { text: "Mendorong sekolah membawa kasus langsung ke pengadilan tanpa jalur damai.", isCorrect: false, rationale: "Memperlama konflik dan merusak hubungan masyarakat." },
+                            { text: "Memfasilitasi mediasi kemitraan antara pihak sekolah, komite, dan tokoh masyarakat untuk mencapai win-win solution.", isCorrect: true, rationale: "Fungsi jembatan komunikasi sosio-kultural dan resolusi konflik kondusif." },
+                            { text: "Menutup sekolah dan memindahkan siswa ke lokasi lain.", isCorrect: false, rationale: "Respon menyerah yang merugikan publik." },
+                            { text: "Meminta kepala sekolah menangani sendiri tanpa dukungan pendampingan.", isCorrect: false, rationale: "Ketiadaan dukungan kepemimpinan pengawasan." }
+                        ],
+                        hint: "Fasilitasi mediasi kemitraan dan resolusi konflik win-win solution."
+                    },
+                    {
+                        questionNumber: 8,
+                        tags: ["Budaya Lokal", "Kurikulum Operasional", "Inovasi"],
+                        stimulus: "Pengawas Ahli Utama ingin mendorong sekolah binaan agar Kurikulum Operasional Satuan Pendidikan (KOSP) lebih bernuansa kearifan lokal.",
+                        question: "Pendampingan yang tepat diberikan adalah...",
+                        answerOptions: [
+                            { text: "Menyusunkan draf KOSP seragam untuk seluruh sekolah.", isCorrect: false, rationale: "Menghilangkan prinsip kontekstual KOSP." },
+                            { text: "Memandu analisis konteks budaya lokal dan memfasilitasi integrasi kearifan lokal dalam capaian pembelajaran kontekstual.", isCorrect: true, rationale: "Memandu analisis kontekstual berorientasi karakteristik unik daerah." },
+                            { text: "Mewajibkan sekolah diajar oleh seniman lokal setiap hari.", isCorrect: false, rationale: "Tidak realistis secara operasional kurikulum." },
+                            { text: "Mengganti mata pelajaran nasional dengan pelajaran bahasa daerah.", isCorrect: false, rationale: "Melanggar kerangka kurikulum nasional." }
+                        ],
+                        hint: "Pandu analisis kontekstual kearifan lokal dalam KOSP."
+                    },
+                    {
+                        questionNumber: 9,
+                        tags: ["Etika Profesi", "Birokrasi Santun", "Sosio-Kultural"],
+                        stimulus: "Dalam sebuah forum diskusi daerah, seorang pejabat dinas mengeluarkan pernyataan yang melanggar nilai etika keberagaman.",
+                        question: "Sikap komunikatif dan santun yang ditunjukkan Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Memarahi pejabat tersebut secara terbuka di hadapan peserta forum.", isCorrect: false, rationale: "Melanggar tata etika komunikasi birokrasi." },
+                            { text: "Mengajukan klarifikasi dan memberikan masukan konstruktif berperspektif kebhinekaan dalam sesi dialog tertutup.", isCorrect: true, rationale: "Ketegasan berprinsip yang disampaikan melalui saluran etika birokrasi santun." },
+                            { text: "Tertawa bersama peserta lain untuk mencairkan suasana.", isCorrect: false, rationale: "Bentuk pembiaran pelanggaran etika." },
+                            { text: "Langsung pergi meninggalkan ruang rapat tanpa pamit.", isCorrect: false, rationale: "Sikap emosional tidak profesional." }
+                        ],
+                        hint: "Berikan masukan konstruktif secara santun melalui forum dialog profesional."
+                    },
+                    {
+                        questionNumber: 10,
+                        tags: ["Global Citizen", "Wawasan Kebangsaan", "Level 5"],
+                        stimulus: "Tantangan globalisasi membuat sebagian siswa di daerah kehilangan rasa kebangsaan dan kebanggaan pada budaya lokal.",
+                        question: "Strategi kepemimpinan sosio-kultural Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Melarang siswa mengakses informasi dan budaya dari luar negeri.", isCorrect: false, rationale: "Pendekatan isolasi yang tidak realistis di era digital." },
+                            { text: "Merancang gerakan daerah 'Berpikir Global, Berakar Lokal' melalui pertukaran budaya dan penguatan identitas nasional.", isCorrect: true, rationale: "Membangun keseimbangan antara wawasan global dan akar kebangsaan kuat." },
+                            { text: "Mewajibkan siswa menggunakan pakaian adat setiap hari.", isCorrect: false, rationale: "Penekanan simbolis luar tanpa penguatan substansi kesadaran." },
+                            { text: "Menyalahkan berkembangnya media sosial sebagai penyebab utama.", isCorrect: false, rationale: "Sikap kambing hitam tanpa solusi edukatif." }
+                        ],
+                        hint: "Kembangkan kerangka 'Berpikir Global, Berakar Lokal' secara seimbang."
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Paket 5: Karya Tulis Ilmiah & Inovasi Pendampingan",
+                questions: [
+                    {
+                        questionNumber: 1,
+                        tags: ["Karya Tulis Ilmiah", "Best Practice", "Ahli Utama"],
+                        stimulus: "Seorang Pengawas Sekolah Ahli Utama menyusun Best Practice / Karya Tulis Ilmiah tingkat provinsi untuk kenaikan pangkat.",
+                        question: "Fokus utama kajian yang memenuhi kualifikasi standar Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Peningkatan hasil belajar siswa pada satu kelas di satu sekolah binaan.", isCorrect: false, rationale: "Cakupan Penelitian Tindakan Kelas (PTK) oleh guru atau pengawas tingkat awal." },
+                            { text: "Inovasi model pendampingan pengawas yang teruji meningkatkan efektivitas kepemimpinan sekolah binaan secara meluas.", isCorrect: true, rationale: "Karya Ahli Utama wajib berfokus pada kebaruan (inovasi) model pendampingan skala luas yang bernilai rekomendasi sistemik." },
+                            { text: "Laporan rekapitulasi kegiatan supervisi harian selama satu tahun.", isCorrect: false, rationale: "Hanya dokumen administratif rutin tanpa kebaruan ilmiah." },
+                            { text: "Kajian pustaka murni tentang teori-teori manajemen tanpa aplikasi lapangan.", isCorrect: false, rationale: "Kurang memberikan kontribusi praktis empiris bagi mutu daerah." }
+                        ],
+                        hint: "Fokus pada inovasi model pendampingan skala luas yang teruji."
+                    },
+                    {
+                        questionNumber: 2,
+                        tags: ["Inovasi Pendampingan", "Model Evaluasi", "Metodologi"],
+                        stimulus: "Pengawas Ahli Utama menciptakan Model Pendampingan 'DIGI-COACH' untuk meningkatkan efisiensi pembinaan sekolah terpencil.",
+                        question: "Tahapan uji validitas model pendampingan yang ilmiah adalah...",
+                        answerOptions: [
+                            { text: "Langsung mengklaim model tersebut sempurna tanpa uji coba.", isCorrect: false, rationale: "Bukan prosedur ilmiah." },
+                            { text: "Uji ahli (expert judgment), uji coba terbatas, revisi model, dan uji coba meluas disertai pengukuran dampak.", isCorrect: true, rationale: "Metodologi Penelitian dan Pengembangan (R&D) yang sah dan valid." },
+                            { text: "Meminta teman sejawat menyetujui model tersebut dalam rapat informal.", isCorrect: false, rationale: "Tingkat keabsahan ilmiah sangat rendah." },
+                            { text: "Menjual model tersebut sebelum diuji di lapangan.", isCorrect: false, rationale: "Menyalahi etika akademik dan profesi." }
+                        ],
+                        hint: "Gunakan alur R&D: Uji Ahli -> Uji Terbatas -> Uji Meluas -> Evaluasi Impact."
+                    },
+                    {
+                        questionNumber: 3,
+                        tags: ["Publikasi Ilmiah", "Diseminasi", "Ahli Utama"],
+                        stimulus: "Karya tulis ilmiah hasil penelitian Pengawas Ahli Utama telah selesai dan teruji memberikan dampak positif.",
+                        question: "Bentuk diseminasi yang paling memberikan dampak masif pada mutu pendidikan daerah adalah...",
+                        answerOptions: [
+                            { text: "Menyimpan berkas laporan di lemari arsip pribadi.", isCorrect: false, rationale: "Tidak ada dampak penyebaran ilmu." },
+                            { text: "Publikasi pada jurnal ilmiah terakreditasi dan mempresentasikan dalam Simposium Pendidikan tingkat Nasional/Provinsi.", isCorrect: true, rationale: "Diseminasi ilmiah resmi yang memperluas manfaat inovasi ke tingkat nasional." },
+                            { text: "Mengunggah ringkasan laporan di status media sosial pribadi.", isCorrect: false, rationale: "Bukan saluran diseminasi ilmiah formal." },
+                            { text: "Mencetak 5 eksemplar saja untuk syarat kenaikan pangkat.", isCorrect: false, rationale: "Fokus sempit hanya pada syarat administrasi personal." }
+                        ],
+                        hint: "Publikasi jurnal terakreditasi dan simposium ilmiah resmi."
+                    },
+                    {
+                        questionNumber: 4,
+                        tags: ["PTS Makro", "Metode Penelitian", "Pengawas Utama"],
+                        stimulus: "Dalam Penelitian Tindakan Sekolah (PTS) skala kawasan, Pengawas Utama menguji efektivitas Kombel Lintas Sekolah.",
+                        question: "Teknik pengumpulan data yang paling komprehensif untuk mengukur perubahan budaya kepemimpinan adalah...",
+                        answerOptions: [
+                            { text: "Hanya menggunakan lembar kehadiran rapat.", isCorrect: false, rationale: "Tidak mengukur perubahan perilaku kepemimpinan." },
+                            { text: "Triangulasi data: Survei Iklim Sekolah, Wawancara Reflektif Kepala Sekolah, dan Rubrik Observasi Kepemimpinan.", isCorrect: true, rationale: "Prinsip triangulasi data untuk menjamin validitas pengukuran perubahan budaya." },
+                            { text: "Tes tertulis pengetahuan umum bagi kepala sekolah.", isCorrect: false, rationale: "Hanya mengukur kognitif hafalan." },
+                            { text: "Meminta pendapat sepintas dari pengunjung sekolah.", isCorrect: false, rationale: "Data subjektif tidak terstruktur." }
+                        ],
+                        hint: "Gunakan triangulasi data: Survei, Wawancara Reflektif, dan Rubrik Observasi."
+                    },
+                    {
+                        questionNumber: 5,
+                        tags: ["Etika Ilmiah", "Plagiarisme", "Integritas Akademia"],
+                        stimulus: "Dalam menyusun naskah karya ilmiah, seorang pengawas menemukan kutipan menarik dari internet tanpa mencantumkan sumber asli.",
+                        question: "Sikap integritas ilmiah yang wajib ditunjukkan Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Menyalin langsung paragraf tersebut karena dianggap milik publik.", isCorrect: false, rationale: "Tindakan plagiarisme ilmiah." },
+                            { text: "Melakukan parafrase dengan bahasa sendiri dan wajib mencantumkan sitasi sumber pustaka sesuai kaidah ilmiah.", isCorrect: true, rationale: "Menjaga kejujuran akademik dan etika penulisan karya ilmiah." },
+                            { text: "Mengubah 1-2 kata saja agar tidak terdeteksi mesin aplikasi.", isCorrect: false, rationale: "Plagiarisme terselubung." },
+                            { text: "Mengaku kalimat tersebut sebagai pemikiran aslinya.", isCorrect: false, rationale: "Bentuk kebohongan akademik." }
+                        ],
+                        hint: "Lakukan parafrase dan sertakan sitasi sumber pustaka yang sah."
+                    },
+                    {
+                        questionNumber: 6,
+                        tags: ["Kebaruan Inovasi", "State of the Art", "Penelitian"],
+                        stimulus: "Pengawas Ahli Utama harus mampu membuktikan 'State of the Art' (kebaruan) dari inovasi pendampingan yang ia teliti.",
+                        question: "Cara membuktikan kebaruan karya ilmiah tersebut adalah...",
+                        answerOptions: [
+                            { text: "Klaim pribadi bahwa belum pernah ada yang meneliti topik tersebut.", isCorrect: false, rationale: "Klaim subjektif tanpa bukti literatur." },
+                            { text: "Melakukan analisis matriks studi komparatif terhadap hasil-hasil penelitian terdahulu yang relevan.", isCorrect: true, rationale: "Kajian kaji pustaka sistematis untuk menemukan celah kebaruan (research gap)." },
+                            { text: "Meminta surat keterangan dari kepala dinas bahwa penelitiannya baru.", isCorrect: false, rationale: "Bukan bukti legitimasi ilmiah." },
+                            { text: "Menggunakan judul yang sangat panjang dan rumit.", isCorrect: false, rationale: "Judul rumit bukan indikator kebaruan substansi." }
+                        ],
+                        hint: "Lakukan analisis studi komparatif literatur terdahulu (research gap)."
+                    },
+                    {
+                        questionNumber: 7,
+                        tags: ["Action Research", "Siklus Pembinaan", "Refleksi"],
+                        stimulus: "Pada akhir Siklus 1 PTS, hasil evaluasi menunjukkan belum ada peningkatan signifikan pada budaya refleksi guru.",
+                        question: "Tindakan metodologis yang wajib dilakukan Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Mengubah data penelitian agar terlihat meningkat pada Siklus 1.", isCorrect: false, rationale: "Falsifikasi data yang melanggar hukum dan etika." },
+                            { text: "Melakukan refleksi akar masalah, merancang ulang strategi intervensi pada Siklus 2, dan melanjutkan perbaikan.", isCorrect: true, rationale: "Prinsip dasar Penelitian Tindakan: refleksi evaluatif untuk perbaikan siklus berikutnya." },
+                            { text: "Menghentikan penelitian dan menyatakan gagal.", isCorrect: false, rationale: "Sikap menyerah tanpa menyelesaikan tindakan perbaikan." },
+                            { text: "Menyalahkan guru yang dianggap tidak kooperatif.", isCorrect: false, rationale: "Tidak reflektif terhadap metode pendampingan peneliti." }
+                        ],
+                        hint: "Lakukan refleksi akar masalah dan modifikasi intervensi pada Siklus 2."
+                    },
+                    {
+                        questionNumber: 8,
+                        tags: ["Writing Policy Brief", "Rekomendasi Kebijakan", "Karya Ilmiah"],
+                        stimulus: "Karya ilmiah Ahli Utama dapat ditransformasikan menjadi Naskah Kebijakan Ringkas (Policy Brief) untuk Pemerintah Daerah.",
+                        question: "Struktur ringkas Policy Brief yang efektif untuk pengambil keputusan adalah...",
+                        answerOptions: [
+                            { text: "Laporan tebal 200 halaman berisikan seluruh rumus statistik.", isCorrect: false, rationale: "Terlalu rumit dan tidak akan dibaca pengambil keputusan." },
+                            { text: "Ringkasan Eksekutif (1-2 lembar), Pernyataan Masalah, Bukti Data Empiris, Opsi Solusi, dan Rekomendasi Kebijakan.", isCorrect: true, rationale: "Format baku Policy Brief yang efektif, lugas, dan padat bagi eksekutif." },
+                            { text: "Hanya berisikan kumpulan foto kegiatan pendampingan.", isCorrect: false, rationale: "Dokumentasi visual tanpa analisis kebijakan." },
+                            { text: "Koleksi cerpen dan refleksi kepenyairannya.", isCorrect: false, rationale: "Bukan format naskah kebijakan publik." }
+                        ],
+                        hint: "Format Policy Brief: Ringkasan Eksekutif, Masalah, Data, Solusi, Rekomendasi."
+                    },
+                    {
+                        questionNumber: 9,
+                        tags: ["Kolaborasi Riset", "Perguruan Tinggi", "Sinergi Mutu"],
+                        stimulus: "Untuk meningkatkan bobot kualitas penelitian pendampingan, Pengawas Ahli Utama berinisiatif menggandeng akademisi perguruan tinggi.",
+                        question: "Bentuk kerja sama riset yang paling produktif adalah...",
+                        answerOptions: [
+                            { text: "Menyerahkan seluruh proses penelitian kepada akademisi dan pengawas hanya terima jadi.", isCorrect: false, rationale: "Bukan bentuk kolaborasi aktif." },
+                            { text: "Riset Kolaboratif Tindakan (Collaborative Action Research): Pengawas menguasai lapangan, akademisi menguatkan metodologi.", isCorrect: true, rationale: "Sinergi ideal antara praktisi pengawas (konteks lapangan) dan akademisi (metodologi)." },
+                            { text: "Membayar akademisi untuk menuliskan naskah atas nama pengawas.", isCorrect: false, rationale: "Tindakan perjokian ilmiah yang dilarang." },
+                            { text: "Mengundang akademisi hanya untuk menjadi juri lomba di sekolah.", isCorrect: false, rationale: "Kerja sama sebatas formalitas seremonial." }
+                        ],
+                        hint: "Lakukan Collaborative Action Research: Praktisi Lapangan + Penguat Metodologi."
+                    },
+                    {
+                        questionNumber: 10,
+                        tags: ["Sustainability", "Dampak Inovasi", "Ahli Utama"],
+                        stimulus: "Sebuah karya ilmiah inovasi pendampingan harus memiliki sifat keberlanjutan (sustainability) setelah penelitian selesai.",
+                        question: "Ciri inovasi pendampingan yang memiliki keberlanjutan tinggi adalah...",
+                        answerOptions: [
+                            { text: "Membutuhkan biaya sangat mahal yang bergantung pada dana hibah luar.", isCorrect: false, rationale: "Rentan berhenti jika dana habis." },
+                            { text: "Telah melembaga dalam SOP/Panduan Resmi Daerah, mudah direplikasi, dan memberdayakan komunitas lokal.", isCorrect: true, rationale: "Ciri utama keberlanjutan: pelembagaan regulasi, kemudahan replikasi, dan kemandirian." },
+                            { text: "Hanya bisa dijalankan jika pencetus inovasi (Pengawas Utama) hadir di lokasi.", isCorrect: false, rationale: "Ketergantungan individu yang tinggi (bukan sistem)." },
+                            { text: "Menggunakan aplikasi rumit yang membutuhkan server khusus mahal.", isCorrect: false, rationale: "Tergantung pada teknologi tinggi yang sulit dirawat." }
+                        ],
+                        hint: "Melembaga dalam SOP/Panduan Daerah, mudah direplikasi, dan mandiri."
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "Paket 6: Simulasi Studi Kasus & BEI Wawancara",
+                questions: [
+                    {
+                        questionNumber: 1,
+                        tags: ["Studi Kasus", "Metode STAR-P", "Teknik Jawab"],
+                        stimulus: "Dalam uji Studi Kasus (Case Study) UKKJ, Anda diberikan naskah kasus penurunan mutu lulusan dan konflik internal di suatu daerah.",
+                        question: "Langkah sistematis terbaik dalam merumuskan jawaban analitis kasus tersebut adalah...",
+                        answerOptions: [
+                            { text: "Menuliskan kembali isi cerita naskah untuk memperpanjang jawaban tanpa analisis kritis.", isCorrect: false, rationale: "Hanya mengulang cerita (copy-paste) tanpa analisis kedalaman kompetensi level 5." },
+                            { text: "Identifikasi akar masalah berbasis data naskah -> Sintesis dampak sistemik -> Perumusan solusi strategis -> Rekomendasi kebijakan (STAR-P).", isCorrect: true, rationale: "Alur analitis ideal Ahli Utama: terstruktur, berdasar data kasus, dan berujung rekomendasi kebijakan." },
+                            { text: "Menyalahkan kepala sekolah dan guru sebagai penyebab utama kegagalan.", isCorrect: false, rationale: "Jawaban emosional dan tidak profesional." },
+                            { text: "Memberikan saran umum cepat tanpa mengacu data naskah kasus.", isCorrect: false, rationale: "Tidak kontekstual dengan bukti data yang diberikan." }
+                        ],
+                        hint: "Gunakan alur STAR-P: Situation -> Target -> Action -> Result -> Policy Brief."
+                    },
+                    {
+                        questionNumber: 2,
+                        tags: ["Behavioral Event Interview", "Leading Change", "Bukti BEI"],
+                        stimulus: "Pada sesi wawancara BEI, Asesor meminta Anda menceritakan pengalaman nyata dalam menggerakkan perubahan (Leading Change) skala makro.",
+                        question: "Narasi pengalaman yang paling menguatkan indikator Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Pengalaman merapikan draf piket guru di 2 sekolah binaan.", isCorrect: false, rationale: "Terlalu operasional mikro tingkat sekolah." },
+                            { text: "Pengalaman menginisiasi komunitas belajar lintas pengawas yang memformulasi ulang strategi pendampingan hingga meningkatkan Rapor Pendidikan provinsi.", isCorrect: true, rationale: "Pengalaman kepemimpinan perubahan berskala makro/komunitas dan berdampak luas." },
+                            { text: "Pengalaman menghadiri 10 kali seminar nasional sebagai peserta.", isCorrect: false, rationale: "Pengembangan diri pasif, bukan bukti menggerakkan perubahan." },
+                            { text: "Pengalaman mengetik laporan supervisi secara mandiri di rumah.", isCorrect: false, rationale: "Tugas administratif individu." }
+                        ],
+                        hint: "Ceritakan pengalaman menggerakkan komunitas/sistem yang berdampak luas."
+                    },
+                    {
+                        questionNumber: 3,
+                        tags: ["BEI Evidence", "Bukti Otentik", "Artifacts"],
+                        stimulus: "Asesor meminta bukti otentik (artifact) atas klaim Anda bahwa Anda telah menyusun rekomendasi kebijakan bagi Dinas Pendidikan.",
+                        question: "Dokumen bukti fisik yang paling sah untuk ditunjukkan adalah...",
+                        answerOptions: [
+                            { text: "Foto selfie bersama Kepala Dinas Pendidikan di ruang kerja.", isCorrect: false, rationale: "Bukan bukti dokumen substantif karya." },
+                            { text: "Naskah Policy Brief resmi bersurat pengantar dan disposisi penerimaan dari Dinas Pendidikan.", isCorrect: true, rationale: "Bukti fisik otentik karya kebijakan dengan verifikasi penerimaan kelembagaan." },
+                            { text: "Brosur pelatihan yang dibuat oleh lembaga swasta.", isCorrect: false, rationale: "Bukan dokumen karya pribadi pengawas." },
+                            { text: "Coretan catatan tangan di buku agenda pribadi.", isCorrect: false, rationale: "Dokumen tidak resmi tanpa verifikasi instansi." }
+                        ],
+                        hint: "Naskah Policy Brief resmi dengan bukti verifikasi/disposisi instansi."
+                    },
+                    {
+                        questionNumber: 4,
+                        tags: ["Wawancara BEI", "Kompetensi Manajerial", "Integritas"],
+                        stimulus: "Asesor menanyakan: 'Pernahkah Anda menghadapi tekanan dari atasan untuk mengubah rekomendasi penilaian yang objektif? Bagaimana respon Anda?'",
+                        question: "Respon wawancara yang menunjukkan level kompetensi integritas tinggi adalah...",
+                        answerOptions: [
+                            { text: "Saya langsung menuruti perintah atasan tanpa bertanya demi keamanan posisi saya.", isCorrect: false, rationale: "Menunjukkan integritas rendah dan kepatuhan buta." },
+                            { text: "Saya menjelaskan argumen berbasis data objektif secara santun, menyajikan alternatif solusi akuntabel, dan mempertahankan standar etika.", isCorrect: true, rationale: "Jawaban otentik yang mencerminkan integritas tinggi dan keterampilan komunikasi profesional." },
+                            { text: "Saya marah-marah kepada atasan dan mengancam mengundurkan diri.", isCorrect: false, rationale: "Respon emosional tidak dewasa." },
+                            { text: "Saya pura-pura lupa dan tidak menyelesaikan tugas tersebut.", isCorrect: false, rationale: "Sikap penghindaran tugas." }
+                        ],
+                        hint: "Jelaskan argumen berbasis data secara santun namun tetap memegang integritas."
+                    },
+                    {
+                        questionNumber: 5,
+                        tags: ["Studi Kasus", "Sintesis Data", "Rapor Pendidikan"],
+                        stimulus: "Dalam studi kasus, disajikan tabel Rapor Pendidikan dengan skor Literasi rendah, Numerasi sedang, dan Iklim Keamanan Sangat Rendah.",
+                        question: "Prioritas pembenahan pertama yang harus direkomendasikan Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Fokus pada peningkatan skor Numerasi karena nilainya paling mudah dinaikkan.", isCorrect: false, rationale: "Mengabaikan indikator fondasi keselamatan belajar." },
+                            { text: "Memperbaiki Iklim Keamanan Sekolah terlebih dahulu sebagai fondasi rasa aman belajar, diikuti integrasi Literasi.", isCorrect: true, rationale: "Prinsip Hierarki Kebutuhan Maslow/PBD: Rasa aman adalah syarat mutlak proses belajar efektif." },
+                            { text: "Membeli banyak buku bacaan baru tanpa membenahi iklim sekolah.", isCorrect: false, rationale: "Pengadaan fisik tanpa penyelesaian akar iklim aman." },
+                            { text: "Mengabaikan tabel data dan membuat rekomendasi sendiri.", isCorrect: false, rationale: "Mengabaikan bukti data studi kasus." }
+                        ],
+                        hint: "Iklim Keamanan dan Rasa Aman adalah syarat prasyarat fondasi proses belajar."
+                    },
+                    {
+                        questionNumber: 6,
+                        tags: ["Wawancara BEI", "Pengembangan Diri", "Continuous Learning"],
+                        stimulus: "Asesor BEI menanyakan: 'Bagaimana Anda menjaga perbaruan pengetahuan regulasi dan keahlian kepemimpinan Anda secara mandiri?'",
+                        question: "Jawaban yang paling mencerminkan pembelajar sepanjang hayat (lifelong learner) Ahli Utama adalah...",
+                        answerOptions: [
+                            { text: "Saya merasa pengetahuan saya sudah cukup karena saya sudah di golongan IV/c.", isCorrect: false, rationale: "Sikap arogan dan tidak reflektif." },
+                            { text: "Aktif membaca riset pendidikan terkini, terlibat dalam konsorsium keahlian, dan melakukan refleksi kritis harian atas praktik kerja.", isCorrect: true, rationale: "Mencerminkan sikap pembelajar mandiri, reflektif, dan selalu mengikuti perkembangan ilmu." },
+                            { text: "Saya hanya belajar jika ada perintah pelatihan resmi dari dinas.", isCorrect: false, rationale: "Pembelajar pasif tergantung instruksi." },
+                            { text: "Saya menyerahkan urusan belajar kepada pengawas yang muda-muda.", isCorrect: false, rationale: "Mengabaikan tanggung jawab pengembangan diri." }
+                        ],
+                        hint: "Tunjukkan sikap pembelajar mandiri, reflektif, dan aktif mengupdate ilmu."
+                    },
+                    {
+                        questionNumber: 7,
+                        tags: ["Studi Kasus", "Manajemen Perubahan", "Transformasi"],
+                        stimulus: "Kasus menggambarkan sebuah sekolah binaan yang selalu gagal menjalankan rekomendasi supervisi selama 3 tahun berturut-turut.",
+                        question: "Analisis akar masalah kepemimpinan yang wajib diidentifikasi Pengawas Utama adalah...",
+                        answerOptions: [
+                            { text: "Gaya pendampingan pengawas sebelumnya yang terlalu instruktif tanpa pembentukan komitmen dan coaching berkelanjutan.", isCorrect: true, rationale: "Mengidentifikasi kegagalan metode pendampingan instruktif dan pentingnya paradigma coaching." },
+                            { text: "Kurangnya jumlah pendingin ruangan (AC) di ruang kepala sekolah.", isCorrect: false, rationale: "Faktor fisik yang tidak relevan dengan akar kepemimpinan." },
+                            { text: "Karakter guru di sekolah tersebut yang dianggap tidak bisa dididik.", isCorrect: false, rationale: "Menyalahkan individu secara menghakimi." },
+                            { text: "Lokasi sekolah yang terlalu dekat dengan jalan raya.", isCorrect: false, rationale: "Faktor lingkungan luar yang bukan akar masalah utama." }
+                        ],
+                        hint: "Identifikasi kegagalan pola pendampingan top-down instruktif."
+                    },
+                    {
+                        questionNumber: 8,
+                        tags: ["BEI Interview", "Metode STAR", "Struktur Cerita"],
+                        stimulus: "Saat menceritakan kasus keberhasilan dalam BEI, wawancara Anda terasa berbelit-belit dan membuat Asesor bingung.",
+                        question: "Struktur penyampaian cerita yang efektif dan direkomendasikan adalah...",
+                        answerOptions: [
+                            { text: "Ceritakan kronologis secara detail dari jam ke jam selama 3 hari berturut-turut.", isCorrect: false, rationale: "Terlalu bertele-tele dan melelahkan pewawancara." },
+                            { text: "Gunakan Struktur STAR: Situasi (konteks), Tugas (tanggung jawab Anda), Aksi (tindakan spesifik Anda), Hasil (dampak terukur).", isCorrect: true, rationale: "Struktur standar internasional paling efektif dalam wawancara berbasis perilaku (BEI)." },
+                            { text: "Mulai dari kesimpulan akhir lalu menceritakan keluhan-keluhan selama proses.", isCorrect: false, rationale: "Struktur acak dan cenderung emosional." },
+                            { text: "Meminta Asesor membaca sendiri laporan tanpa perlu menceritakan.", isCorrect: false, rationale: "Respon tidak sopan dalam wawancara langsung." }
+                        ],
+                        hint: "Gunakan Struktur STAR: Situation -> Task -> Action -> Result."
+                    },
+                    {
+                        questionNumber: 9,
+                        tags: ["Simulasi Coaching", "Roleplay Wawancara", "Praktik"],
+                        stimulus: "Pada sesi simulasi unjuk kerja coaching, Anda diminta menghadapi roleplayer (pemeran) Kepala Sekolah yang bersikap emosional dan menangis.",
+                        question: "Tindakan empati profesional yang tepat ditunjukkan pengawas adalah...",
+                        answerOptions: [
+                            { text: "Pura-pura tidak melihat dan langsung menanyakan dokumen Rapor Pendidikan.", isCorrect: false, rationale: "Tidak memiliki rasa empati dan dingin secara sosial." },
+                            { text: "Hadir secara utuh (presence), memberikan waktu sejenak, mendengarkan aktif dengan empati, lalu memandu alur refleksi.", isCorrect: true, rationale: "Prinsip kompetensi dasar coaching: Presence, Active Listening, dan Empati Profesional." },
+                            { text: "Ikut menangis bersama kepala sekolah hingga waktu simulasi habis.", isCorrect: false, rationale: "Kehilangan kontrol profesionalitas sebagai pendamping." },
+                            { text: "Menghentikan sesi simulasi dan marah kepada pemeran roleplayer.", isCorrect: false, rationale: "Kegagalan mengendalikan situasi simulasi ujian." }
+                        ],
+                        hint: "Prinsip Coaching: Presence (hadir utuh), Mendengarkan Aktif, dan Empati."
+                    },
+                    {
+                        questionNumber: 10,
+                        tags: ["Simulasi Ujikom", "Kesiapan Mental", "Sukses Ujikom"],
+                        stimulus: "Hari pelaksanaan Ujikom telah tiba (Tes Tertulis, Studi Kasus, dan Wawancara BEI).",
+                        question: "Strategi manajemen waktu dan mental paling optimal saat menghadapi ujian adalah...",
+                        answerOptions: [
+                            { text: "Mengerjakan soal dengan tergesa-gesa tanpa membaca naskah stimulus secara cermat.", isCorrect: false, rationale: "Bisa terjebak pada opsi jawaban yang tampak benar namun berskor rendah." },
+                            { text: "Pahami konteks stimulus kasus &rarr; eliminasi opsi operasional mikro &rarr; pilih jawaban berdampak kebijakan makro &rarr; kelola waktu tenang.", isCorrect: true, rationale: "Strategi komprehensif mengintegrasikan ketenangan mental, analisis kritis, dan manajemen waktu." },
+                            { text: "Mengisi jawaban secara acak di 10 menit pertama lalu tidur.", isCorrect: false, rationale: "Sikap tidak serius menghadapi evaluasi karir." },
+                            { text: "Fokus hanya pada soal nomor 1 selama satu jam pertama.", isCorrect: false, rationale: "Manajemen waktu yang buruk." }
+                        ],
+                        hint: "Pahami stimulus, eliminasi opsi mikro, pilih opsi dampak makro, dan tetap tenang."
+                    }
+                ]
+            }
+        ];
+
+        // ----------------------------------------------------
+        // APP STATE MANAGEMENT
+        // ----------------------------------------------------
+        let activePaketData = JSON.parse(JSON.stringify(defaultPaketData));
+        let currentPaketIndex = 0;
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // Format: { "paketId_qNum": selectedOptionIndex }
+        let timerInterval = null;
+        let timeLeft = 15 * 60; // 15 Menit per paket
+
+        // ----------------------------------------------------
+        // INITIALIZATION ON PAGE LOAD
+        // ----------------------------------------------------
+        window.onload = function() {
+            renderHeaderPaketTabs();
+            loadPaket(0);
+        };
+
+        // ----------------------------------------------------
+        // HEADER TABS & NAVIGATION
+        // ----------------------------------------------------
+        function renderHeaderPaketTabs() {
+            const container = document.getElementById('headerPaketTabs');
+            container.innerHTML = '';
+
+            activePaketData.forEach((paket, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition border ${
+                    idx === currentPaketIndex
+                        ? 'bg-amber-400 text-indigo-950 font-bold border-amber-300 shadow-sm'
+                        : 'bg-indigo-900/60 text-indigo-200 border-indigo-800 hover:bg-indigo-800'
+                }`;
+                btn.innerHTML = `<i class="fa-solid fa-folder-open mr-1.5 text-[10px]"></i> ${paket.title.split(':')[0]}`;
+                btn.onclick = () => switchPaket(idx);
+                container.appendChild(btn);
+            });
+        }
+
+        function switchPaket(index) {
+            currentPaketIndex = index;
+            currentQuestionIndex = 0;
+            renderHeaderPaketTabs();
+            loadPaket(index);
+        }
+
+        function loadPaket(index) {
+            const paket = activePaketData[index];
+            document.getElementById('currentPaketTitleBadge').innerText = paket.title;
+            document.getElementById('totalQuestionsNum').innerText = paket.questions.length;
+            
+            // Reset Timer untuk paket baru
+            resetTimer();
+
+            // Render Nomor Soal & Question Card
+            renderQuestionGrid();
+            displayQuestion();
+            updateScoreDisplay();
+        }
+
+        // ----------------------------------------------------
+        // QUESTION DISPLAY & LOGIC
+        // ----------------------------------------------------
+        function displayQuestion() {
+            const currentPaket = activePaketData[currentPaketIndex];
+            const q = currentPaket.questions[currentQuestionIndex];
+            const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+            const selectedOptIndex = userAnswers[answerKey];
+
+            // Update Progress Bar & Counter
+            document.getElementById('currentQuestionNum').innerText = currentQuestionIndex + 1;
+            const progress = ((currentQuestionIndex + 1) / currentPaket.questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Tags
+            const tagsContainer = document.getElementById('questionTags');
+            tagsContainer.innerHTML = '';
+            if (q.tags && q.tags.length > 0) {
+                q.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = "bg-indigo-50 text-indigo-700 text-[11px] px-2.5 py-0.5 rounded-md font-medium border border-indigo-100";
+                    span.innerText = tag;
+                    tagsContainer.appendChild(span);
+                });
+            }
+
+            // Stimulus Wacana AKM
+            const stimulusBox = document.getElementById('stimulusBox');
+            if (q.stimulus && q.stimulus.trim() !== "") {
+                document.getElementById('stimulusText').innerText = q.stimulus;
+                stimulusBox.classList.remove('hidden');
+            } else {
+                stimulusBox.classList.add('hidden');
+            }
+
+            // Question Text
+            document.getElementById('questionText').innerText = q.question;
+
+            // Render Options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            const alphabet = ['A', 'B', 'C', 'D'];
+            q.answerOptions.forEach((opt, idx) => {
+                const isSelected = selectedOptIndex === idx;
+                const optBtn = document.createElement('button');
+                
+                let btnStyle = "w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition flex items-start space-x-3 ";
+                if (isSelected) {
+                    btnStyle += "bg-indigo-50 border-indigo-600 text-indigo-950 font-medium shadow-sm ring-1 ring-indigo-500";
+                } else {
+                    btnStyle += "bg-white border-slate-200 hover:border-indigo-300 hover:bg-slate-50 text-slate-700";
+                }
+
+                optBtn.className = btnStyle;
+                optBtn.onclick = () => selectOption(idx);
+
+                optBtn.innerHTML = `
+                    <span class="w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center flex-shrink-0 ${
+                        isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600'
+                    }">
+                        ${alphabet[idx]}
+                    </span>
+                    <span class="leading-relaxed flex-grow pt-0.5">${opt.text}</span>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+
+            // Reset Clue / Hint Box
+            document.getElementById('hintBox').classList.add('hidden');
+            document.getElementById('hintText').innerText = q.hint || "Fokus pada peran kepemimpinan strategis makro Level 5.";
+
+            // Render Rationale jika sudah dijawab
+            const rationaleBox = document.getElementById('rationaleBox');
+            if (selectedOptIndex !== undefined) {
+                const selectedOpt = q.answerOptions[selectedOptIndex];
+                const correctOpt = q.answerOptions.find(o => o.isCorrect);
+
+                rationaleBox.classList.remove('hidden');
+                if (selectedOpt.isCorrect) {
+                    rationaleBox.className = "rounded-xl p-4 mb-4 text-xs sm:text-sm border bg-emerald-50 border-emerald-200 text-emerald-950";
+                    rationaleBox.innerHTML = `
+                        <div class="font-bold text-emerald-800 flex items-center mb-1">
+                            <i class="fa-solid fa-circle-check mr-2 text-emerald-600"></i> Jawaban Anda Tepat! (Skor 4 / Level 5)
+                        </div>
+                        <p class="leading-relaxed text-emerald-900">${selectedOpt.rationale}</p>
+                    `;
+                } else {
+                    rationaleBox.className = "rounded-xl p-4 mb-4 text-xs sm:text-sm border bg-amber-50 border-amber-200 text-amber-950";
+                    rationaleBox.innerHTML = `
+                        <div class="font-bold text-amber-900 flex items-center mb-1">
+                            <i class="fa-solid fa-triangle-exclamation mr-2 text-amber-600"></i> Pembahasan Analitis:
+                        </div>
+                        <p class="mb-2 leading-relaxed text-amber-900"><strong>Pilihan Anda:</strong> ${selectedOpt.rationale}</p>
+                        <p class="leading-relaxed text-emerald-950 border-t border-amber-200/60 pt-2">
+                            <strong>Opsi Paling Tepat:</strong> "${correctOpt.text}" <br>
+                            <em>${correctOpt.rationale}</em>
+                        </p>
+                    `;
+                }
+            } else {
+                rationaleBox.classList.add('hidden');
+            }
+
+            // Button Prev/Next Status
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIndex === currentPaket.questions.length - 1) {
+                nextBtn.innerHTML = `Selesai Paket <i class="fa-solid fa-check ml-1"></i>`;
+                nextBtn.onclick = finishQuiz;
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                nextBtn.onclick = () => navigateQuestion(1);
+            }
+
+            renderQuestionGrid();
+        }
+
+        function selectOption(index) {
+            const currentPaket = activePaketData[currentPaketIndex];
+            const q = currentPaket.questions[currentQuestionIndex];
+            const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+
+            userAnswers[answerKey] = index;
+            displayQuestion();
+            updateScoreDisplay();
+        }
+
+        function navigateQuestion(direction) {
+            const currentPaket = activePaketData[currentPaketIndex];
+            const newIndex = currentQuestionIndex + direction;
+
+            if (newIndex >= 0 && newIndex < currentPaket.questions.length) {
+                currentQuestionIndex = newIndex;
+                displayQuestion();
+            }
+        }
+
+        function toggleHint() {
+            const hintBox = document.getElementById('hintBox');
+            hintBox.classList.toggle('hidden');
+        }
+
+        // ----------------------------------------------------
+        // QUESTION NAVIGATION GRID
+        // ----------------------------------------------------
+        function renderQuestionGrid() {
+            const currentPaket = activePaketData[currentPaketIndex];
+            const gridContainer = document.getElementById('questionGrid');
+            gridContainer.innerHTML = '';
+
+            let answeredCounter = 0;
+
+            currentPaket.questions.forEach((q, idx) => {
+                const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+                const isAnswered = userAnswers[answerKey] !== undefined;
+                if (isAnswered) answeredCounter++;
+
+                const btn = document.createElement('button');
+                let btnClass = "w-full h-9 rounded-xl font-bold text-xs transition flex items-center justify-center border ";
+
+                if (idx === currentQuestionIndex) {
+                    btnClass += "ring-2 ring-indigo-600 border-indigo-600 bg-indigo-600 text-white shadow-md";
+                } else if (isAnswered) {
+                    btnClass += "bg-emerald-100 text-emerald-800 border-emerald-300 font-bold";
+                } else {
+                    btnClass += "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100";
+                }
+
+                btn.className = btnClass;
+                btn.innerText = idx + 1;
+                btn.onclick = () => {
+                    currentQuestionIndex = idx;
+                    displayQuestion();
+                };
+
+                gridContainer.appendChild(btn);
+            });
+
+            document.getElementById('answeredCount').innerText = `${answeredCounter}/${currentPaket.questions.length} Terjawab`;
+        }
+
+        // ----------------------------------------------------
+        // SCORE & TIMER CALCULATIONS
+        // ----------------------------------------------------
+        function updateScoreDisplay() {
+            const currentPaket = activePaketData[currentPaketIndex];
+            let correctCount = 0;
+
+            currentPaket.questions.forEach(q => {
+                const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+                const selectedIdx = userAnswers[answerKey];
+                if (selectedIdx !== undefined && q.answerOptions[selectedIdx].isCorrect) {
+                    correctCount++;
+                }
+            });
+
+            const score = (correctCount / currentPaket.questions.length) * 100;
+            document.getElementById('currentScore').innerText = Math.round(score);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 15 * 60;
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Waktu pengerjaan paket ini telah habis!");
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timerDisplay').innerText = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function resetQuiz() {
+            const currentPaket = activePaketData[currentPaketIndex];
+            currentPaket.questions.forEach(q => {
+                const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+                delete userAnswers[answerKey];
+            });
+
+            currentQuestionIndex = 0;
+            resetTimer();
+            displayQuestion();
+            updateScoreDisplay();
+        }
+
+        // ----------------------------------------------------
+        // TAB SWITCHING (Simulasi <-> Tips)
+        // ----------------------------------------------------
+        function switchTab(tabName) {
+            const simulasiSec = document.getElementById('simulasiSection');
+            const tipsSec = document.getElementById('tipsSection');
+            const tabBtn = document.getElementById('tabTipsBtn');
+
+            if (tabName === 'tips') {
+                simulasiSec.classList.add('hidden');
+                tipsSec.classList.remove('hidden');
+                tabBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-xl bg-amber-400 text-indigo-950 transition";
+            } else {
+                simulasiSec.classList.remove('hidden');
+                tipsSec.classList.add('hidden');
+                tabBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-xl bg-indigo-900 hover:bg-indigo-800 text-indigo-200 transition";
+            }
+        }
+
+        // ----------------------------------------------------
+        // MODAL & REPORT GENERATION
+        // ----------------------------------------------------
+        function finishQuiz() {
+            const currentPaket = activePaketData[currentPaketIndex];
+            let correctCount = 0;
+
+            currentPaket.questions.forEach(q => {
+                const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+                const selectedIdx = userAnswers[answerKey];
+                if (selectedIdx !== undefined && q.answerOptions[selectedIdx].isCorrect) {
+                    correctCount++;
+                }
+            });
+
+            const score = Math.round((correctCount / currentPaket.questions.length) * 100);
+
+            document.getElementById('modalScore').innerText = score;
+            document.getElementById('modalCorrect').innerText = correctCount;
+            document.getElementById('modalTotal').innerText = `/ ${currentPaket.questions.length}`;
+
+            const predBox = document.getElementById('modalPredicate');
+            if (score >= 80) {
+                predBox.className = "text-xs font-semibold p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200";
+                predBox.innerHTML = `<i class="fa-solid fa-award text-emerald-600 mr-1.5"></i> <strong>SANGAT REKOMENDASI (KOMPETEN LEVEL 5)</strong><br>Anda menguasai analisis kebijakan makro dan kepemimpinan strategis.`;
+            } else if (score >= 70) {
+                predBox.className = "text-xs font-semibold p-3 rounded-xl bg-indigo-50 text-indigo-800 border border-indigo-200";
+                predBox.innerHTML = `<i class="fa-solid fa-circle-check text-indigo-600 mr-1.5"></i> <strong>REKOMENDASI (CUKUP KOMPETEN)</strong><br>Tingkatkan analisis berbasis data Rapor Pendidikan dan Policy Brief.`;
+            } else {
+                predBox.className = "text-xs font-semibold p-3 rounded-xl bg-amber-50 text-amber-800 border border-amber-200";
+                predBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1.5"></i> <strong>PERLU LATIHAN LANJUTAN</strong><br>Pelajari kembali indikator evaluasi kebijakan dan pendekatan coaching TIRTA.`;
+            }
+
+            document.getElementById('resultModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.add('hidden');
+        }
+
+        // ----------------------------------------------------
+        // REAL-TIME AI GENERATION VIA GEMINI API (60 SOAL RE-GENERATE)
+        // ----------------------------------------------------
+        async function generateAll6PaketWithAI() {
+            const apiKey = ""; // Disertakan otomatis di Canvas Runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const loadingBox = document.getElementById('aiLoadingBox');
+            const regenBtn = document.getElementById('regenerateAllBtn');
+            
+            loadingBox.classList.remove('hidden');
+            regenBtn.disabled = true;
+            regenBtn.classList.add('opacity-50');
+
+            const systemPrompt = `Anda adalah Tim Asesor Resmi Pusat Uji Kompetensi Jabatan Fungsional Kemendikbudristek RI.
+Tugas Anda adalah menyusun SOAL BARU REAL-TIME untuk Uji Kompetensi Kenaikan Jenjang (UKKJ) Pengawas Sekolah dari Ahli Madya (Gol. IV/c) ke Ahli Utama (Gol. IV/d).
+
+KRITERIA DAN ATURAN WAJIB SOAL:
+1. Level Kognitif: High Level C5 (Evaluasi) & C6 (Kreasi/Policy) - Level Kompetensi 5 Pengawas Utama.
+2. Tipe Soal: Situational Judgment Test (SJT) dan Studi Kasus AKM (menggunakan wacana stimulus data Rapor Pendidikan / Kasus Strategis).
+3. Buat 6 PAKET SOAL, di mana masing-masing paket berisi 10 BUTIR SOAL AKM/SJT (Total 60 Soal Baru).
+4. Setiap butir soal harus memiliki 4 opsi jawaban (A,B,C,D) yang tampak mirip/homogen, tetapi HANYA 1 yang berskor paling tinggi (Level 5) disertai Rationale analitis yang kuat.
+
+Format JSON Output harus berupa Array of Object 6 Paket dengan struktur persis seperti berikut:
+[
+  {
+    "id": 1,
+    "title": "Paket 1: Perumusan & Evaluasi Kebijakan Daerah",
+    "questions": [
+      {
+        "questionNumber": 1,
+        "tags": ["Evaluasi Kebijakan", "Rapor Pendidikan"],
+        "stimulus": "Teks Wacana Kasus / Data Rapor Pendidikan singkat...",
+        "question": "Pertanyaan kasus strategis...",
+        "answerOptions": [
+          { "text": "Opsi A", "isCorrect": false, "rationale": "Alasan..." },
+          { "text": "Opsi B", "isCorrect": true, "rationale": "Alasan..." },
+          { "text": "Opsi C", "isCorrect": false, "rationale": "Alasan..." },
+          { "text": "Opsi D", "isCorrect": false, "rationale": "Alasan..." }
+        ],
+        "hint": "Clue kata kunci..."
+      }
+    ]
+  }
+]`;
+
+            const userQuery = `Buatkan 6 Paket Soal Baru UKKJ Pengawas Ahli Utama (Total 60 Soal) sesuai format JSON Schema. Pastikan kasus-kasus terbaru berbasis PermenPAN-RB No 1/2023, Perdirjen GTK 4831/2023, Perencanaan Berbasis Data (PBD), dan TPPK.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: {
+                    responseMimeType: "application/json"
+                }
+            };
+
+            try {
+                let response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                let result = await response.json();
+                let jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (jsonText) {
+                    let parsedData = JSON.parse(jsonText);
+                    if (Array.isArray(parsedData) && parsedData.length > 0) {
+                        activePaketData = parsedData;
+                        userAnswers = {};
+                        currentPaketIndex = 0;
+                        currentQuestionIndex = 0;
+                        
+                        renderHeaderPaketTabs();
+                        loadPaket(0);
+                        alert("Berhasil! 6 Paket Soal Baru (60 Soal AKM/SJT) telah disusun secara real-time oleh AI Gemini.");
+                    }
+                }
+            } catch (err) {
+                console.error("Gagal generate soal via AI:", err);
+                alert("Mohon maaf, koneksi pembuatan soal AI dinamis sedang sibuk. Aplikasi akan tetap menggunakan Bank Soal Lengkap bawaan.");
+            } finally {
+                loadingBox.classList.add('hidden');
+                regenBtn.disabled = false;
+                regenBtn.classList.remove('opacity-50');
+            }
+        }
+
+        // ----------------------------------------------------
+        // PDF EXPORT ENGINE (html2pdf.js)
+        // ----------------------------------------------------
+        function exportToPDF() {
+            const userName = document.getElementById('userName').value || "Peserta UKKJ Pengawas Utama";
+            const userNip = document.getElementById('userNip').value || "-";
+            const userUnit = document.getElementById('userUnit').value || "-";
+
+            const currentPaket = activePaketData[currentPaketIndex];
+            let correctCount = 0;
+
+            let detailsHTML = '';
+
+            currentPaket.questions.forEach((q, idx) => {
+                const answerKey = `${currentPaket.id}_${q.questionNumber}`;
+                const selectedIdx = userAnswers[answerKey];
+                const isAnswered = selectedIdx !== undefined;
+
+                let userAnsText = "Belum Dijawab (Dilewati)";
+                let isCorrect = false;
+
+                if (isAnswered) {
+                    userAnsText = q.answerOptions[selectedIdx].text;
+                    isCorrect = q.answerOptions[selectedIdx].isCorrect;
+                    if (isCorrect) correctCount++;
+                }
+
+                const correctOpt = q.answerOptions.find(o => o.isCorrect);
+
+                detailsHTML += `
+                    <div class="border border-slate-200 rounded-lg p-3 bg-white mb-3">
+                        <div class="font-bold text-indigo-950 mb-1">Soal ${idx + 1}: ${q.question}</div>
+                        ${q.stimulus ? `<div class="bg-slate-50 p-2 text-[10px] text-slate-600 italic border-l-2 border-indigo-400 mb-2">${q.stimulus}</div>` : ''}
+                        <div class="grid grid-cols-1 gap-1 text-[11px] mb-2">
+                            <div class="${isCorrect ? 'text-emerald-700 font-semibold' : 'text-red-700'}">
+                                <strong>Jawaban Anda:</strong> ${userAnsText} ${isCorrect ? '✓ (Benar)' : '✗ (Kurang Tepat)'}
+                            </div>
+                            ${!isCorrect ? `<div class="text-emerald-800"><strong>Kunci Jawaban Resmi (Level 5):</strong> ${correctOpt.text}</div>` : ''}
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded text-[10px] text-slate-700 border border-slate-100">
+                            <strong>Pembahasan Rationale:</strong> ${correctOpt.rationale}
+                        </div>
+                    </div>
+                `;
+            });
+
+            const score = Math.round((correctCount / currentPaket.questions.length) * 100);
+            let predikatText = score >= 80 ? "SANGAT REKOMENDASI (KOMPETEN LEVEL 5)" : (score >= 70 ? "REKOMENDASI (CUKUP KOMPETEN)" : "PERLU LATIHAN LANJUTAN");
+
+            // Populate PDF Template
+            document.getElementById('pdfNama').innerText = userName;
+            document.getElementById('pdfNip').innerText = userNip;
+            document.getElementById('pdfUnit').innerText = userUnit;
+            document.getElementById('pdfPaketTitle').innerText = currentPaket.title;
+            document.getElementById('pdfSkor').innerText = `${score} / 100`;
+            document.getElementById('pdfPredikat').innerText = predikatText;
+            document.getElementById('pdfTanggal').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('pdfQuestionDetails').innerHTML = detailsHTML;
+
+            // Generate PDF
+            const element = document.getElementById('pdfContent');
+            const pdfTemplateBox = document.getElementById('pdfExportTemplate');
+
+            pdfTemplateBox.classList.remove('hidden');
+
+            const opt = {
+                margin:       [0.3, 0.3, 0.3, 0.3],
+                filename:     `Laporan_UKKJ_PengawasUtama_${userName.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                pdfTemplateBox.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
