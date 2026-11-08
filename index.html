@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Interaktif UKKJ Pengawas Sekolah Ahli Utama</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js CDN untuk Ekspor Laporan PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar Utama -->
+    <header class="bg-indigo-950 text-white shadow-xl sticky top-0 z-50 border-b border-indigo-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-wrap justify-between items-center mb-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-gradient-to-tr from-amber-500 to-amber-300 text-indigo-950 p-2.5 rounded-xl font-bold shadow-md">
+                        <i class="fa-solid fa-award text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-base sm:text-lg font-bold leading-tight flex items-center gap-2">
+                            Simulator UKKJ Pengawas Utama
+                            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded-full border border-emerald-400/30">
+                                <i class="fa-solid fa-bolt mr-1"></i> Dynamically AI Generated
+                            </span>
+                        </h1>
+                        <p class="text-xs text-indigo-300">Ahli Madya (IV/c) &rarr; Ahli Utama (IV/d) &bull; Level Kognitif High-C5/C6 (AKM & SJT)</p>
+                    </div>
+                </div>
+
+                <!-- Right Action Header -->
+                <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                    <button onclick="generateAll6PaketWithAI()" id="regenerateAllBtn" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-indigo-950 font-bold text-xs rounded-xl shadow-md transition flex items-center">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Buat 6 Paket Soal Baru (AI)
+                    </button>
+                    <button id="tabTipsBtn" onclick="switchTab('tips')" class="px-3 py-1.5 text-xs font-semibold rounded-xl bg-indigo-900 hover:bg-indigo-800 transition text-indigo-200">
+                        <i class="fa-solid fa-lightbulb mr-1"></i> Tips UKKJ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Header Menu Paket (Nav-Tabs Paket 1 - 6) -->
+            <div id="headerPaketTabs" class="flex space-x-1.5 overflow-x-auto pb-1 pt-1 custom-scrollbar text-xs">
+                <!-- Tab Pilihan 6 Paket Soal di-generate via JS -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+        
+        <!-- SECTION 1: SIMULASI SOAL -->
+        <section id="simulasiSection" class="block">
+            <!-- Form Identitas Peserta -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 mb-6">
+                <h3 class="text-xs font-bold text-indigo-950 mb-3 flex items-center uppercase tracking-wider">
+                    <i class="fa-solid fa-id-card text-amber-500 mr-2 text-sm"></i> Identitas Peserta Ujikom
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                    <div>
+                        <label class="block font-semibold text-slate-600 mb-1">Nama Lengkap & Gelar</label>
+                        <input type="text" id="userName" placeholder="Drs. H. Ahmad Fauzi, M.Pd." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-600 mb-1">NIP</label>
+                        <input type="text" id="userNip" placeholder="19780512 200212 1 002" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-600 mb-1">Kabupaten / Kota / Instansi</label>
+                        <input type="text" id="userUnit" placeholder="Dinas Pendidikan Kab. Bandung" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator AI -->
+            <div id="aiLoadingBox" class="hidden bg-indigo-900 text-white rounded-2xl p-6 mb-6 shadow-xl border border-indigo-700 text-center space-y-3 animate-pulse">
+                <div class="inline-block text-amber-400 text-3xl">
+                    <i class="fa-solid fa-brain fa-spin"></i>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold text-amber-300" id="aiLoadingTitle">Menyusun Soal Baru dengan AI Generatif...</h3>
+                <p class="text-xs text-indigo-200 max-w-lg mx-auto" id="aiLoadingDesc">
+                    Gemini AI sedang memformulasi wacana stimulus AKM & skenario kasus strategis terbaru untuk Pengawas Sekolah Ahli Utama.
+                </p>
+            </div>
+
+            <!-- Progress & Info Bar -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 mb-6 flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center space-x-4">
+                    <div>
+                        <span id="currentPaketTitleBadge" class="text-xs font-bold text-indigo-900 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-100 block mb-1">
+                            Paket 1: Kebijakan Education Daerah
+                        </span>
+                        <div class="text-xs">
+                            <span class="text-slate-500">Soal Ke:</span>
+                            <span id="currentQuestionNum" class="font-bold text-indigo-900 text-sm">1</span>
+                            <span class="text-slate-400">/</span>
+                            <span id="totalQuestionsNum" class="text-slate-600 font-medium">10</span>
+                        </div>
+                    </div>
+                    <div class="w-28 sm:w-40 bg-slate-100 rounded-full h-2 overflow-hidden">
+                        <div id="progressBar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300" style="width: 10%"></div>
+                    </div>
+                </div>
+
+                <!-- Timer & Controls -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-amber-50 text-amber-800 px-3 py-1.5 rounded-xl border border-amber-200 text-xs font-bold flex items-center space-x-1.5">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="timerDisplay">15:00</span>
+                    </div>
+                    <button onclick="resetQuiz()" class="px-3 py-1.5 text-xs text-slate-600 hover:text-red-600 bg-slate-100 hover:bg-red-50 rounded-xl transition border border-slate-200 font-medium">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reset Paket Ini
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Layout: Grid (Question Box + Question Grid Navigation) -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Question Card (Left / 3 Cols) -->
+                <div class="lg:col-span-3 bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <!-- Tags & Indikator -->
+                        <div id="questionTags" class="flex flex-wrap gap-2 mb-3">
+                            <!-- Dynamic Tags -->
+                        </div>
+
+                        <!-- Stimulus Wacana AKM (Jika Ada) -->
+                        <div id="stimulusBox" class="hidden bg-slate-50 border-l-4 border-indigo-600 p-4 rounded-r-xl mb-4 text-xs text-slate-700 leading-relaxed font-serif">
+                            <div class="font-bold font-sans text-indigo-900 mb-1 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-file-lines mr-1.5"></i> Wacana Stimulus AKM / Skenario Kasus:
+                            </div>
+                            <div id="stimulusText"></div>
+                        </div>
+
+                        <!-- Question Text -->
+                        <h2 id="questionText" class="text-sm sm:text-base font-semibold text-slate-800 leading-relaxed mb-5">
+                            Memuat soal...
+                        </h2>
+
+                        <!-- Answer Options -->
+                        <div id="optionsContainer" class="space-y-2.5 mb-6">
+                            <!-- Dynamic Options -->
+                        </div>
+
+                        <!-- Hint Section (Hidden by default) -->
+                        <div id="hintBox" class="hidden bg-indigo-50 border border-indigo-200 rounded-xl p-4 mb-4 text-xs text-indigo-900">
+                            <div class="font-semibold flex items-center mb-1">
+                                <i class="fa-solid fa-circle-info mr-2 text-indigo-600"></i> Petunjuk Kata Kunci (Level 5):
+                            </div>
+                            <p id="hintText" class="text-indigo-800 leading-relaxed"></p>
+                        </div>
+
+                        <!-- Rationale / Pembahasan Box (Shown after selection) -->
+                        <div id="rationaleBox" class="hidden rounded-xl p-4 mb-4 text-xs sm:text-sm border">
+                            <!-- Dynamic Rationale -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Nav Buttons -->
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100 mt-4">
+                        <button id="hintBtn" onclick="toggleHint()" class="text-xs text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                            <i class="fa-regular fa-lightbulb mr-1.5 text-amber-500 text-sm"></i> Tampilkan Clue (Analisis)
+                        </button>
+
+                        <div class="flex space-x-2">
+                            <button id="prevBtn" onclick="navigateQuestion(-1)" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition disabled:opacity-40 disabled:cursor-not-allowed">
+                                <i class="fa-solid fa-arrow-left mr-1"></i> Sebelum
+                            </button>
+                            <button id="nextBtn" onclick="navigateQuestion(1)" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-md shadow-indigo-200 transition">
+                                Selanjutnya <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Number Navigation Grid & Summary -->
+                <div class="lg:col-span-1 space-y-6">
+                    <!-- Navigasi Nomor Soal -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                        <h3 class="text-xs font-bold text-slate-700 mb-3 flex items-center justify-between uppercase tracking-wider">
+                            <span>Navigasi Soal</span>
+                            <span id="answeredCount" class="text-[11px] font-normal text-slate-500">0/10 Terjawab</span>
+                        </h3>
+                        <div id="questionGrid" class="grid grid-cols-5 gap-2">
+                            <!-- Dynamic Grid Buttons -->
+                        </div>
+                    </div>
+
+                    <!-- Ringkasan Nilai Card -->
+                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-5 shadow-sm">
+                        <h3 class="text-xs font-bold text-slate-300 mb-1 uppercase tracking-wider">Capaian Paket Aktif</h3>
+                        <div class="flex items-baseline space-x-2 my-2">
+                            <span id="currentScore" class="text-3xl font-extrabold text-amber-400">0</span>
+                            <span class="text-slate-400 text-xs">/ 100 poin</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Soal menguji **Kompetensi Level 5** (AKM Wacana & Evaluasi Kebijakan Makro).
+                        </p>
+                        <button onclick="finishQuiz()" class="w-full mt-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold text-xs uppercase tracking-wider rounded-xl transition shadow-md">
+                            Selesai & Lihat Laporan PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: TIPS & STRATEGI -->
+        <section id="tipsSection" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h2 class="text-lg font-bold text-indigo-950 mb-3 flex items-center">
+                    <i class="fa-solid fa-graduation-cap mr-2.5 text-amber-500"></i> Panduan & Strategi Lolos Ujikom (Ahli Madya ke Ahli Utama)
+                </h2>
+                <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+                    Uji Kompetensi Ahli Utama berpindah dari fungsi supervisi sekolah binaan ke **kepemimpinan strategis daerah, evaluasi kebijakan publik, dan coaching for coaches**.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs sm:text-sm">
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                        <div class="text-indigo-900 font-bold text-sm mb-2 flex items-center">
+                            <i class="fa-solid fa-microscope mr-2 text-indigo-600"></i> 1. Uji Situational Judgment Test (SJT) & AKM
+                        </div>
+                        <ul class="text-slate-600 space-y-1.5 list-disc list-inside">
+                            <li><strong>Prinsip Afirmasi:</strong> Pilih opsi berorientasi pada equity (pemerataan mutu daerah) dibanding efisiensi seragam.</li>
+                            <li><strong>Berbasis Data Rapor Pendidikan:</strong> Kebijakan diawali sintesis data komprehensif PBD Daerah.</li>
+                            <li><strong>Coaching TIRTA:</strong> Gunakan dialog reflektif pemberdayaan, bukan instruksi otoriter.</li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                        <div class="text-indigo-900 font-bold text-sm mb-2 flex items-center">
+                            <i class="fa-solid fa-file-pen mr-2 text-indigo-600"></i> 2. Uji Studi Kasus (Format STAR-P)
+                        </div>
+                        <ul class="text-slate-600 space-y-1.5 list-disc list-inside">
+                            <li>Structure alur: Situation &rarr; Target &rarr; Action &rarr; Result &rarr; Policy Brief.</li>
+                            <li>Fokus solusi pada perbaikan sistem regional/kabupaten, bukan kelas individual.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <button onclick="switchTab('simulasi')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-semibold">Kembali ke Soal Simulasi</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Hasil Ujian -->
+    <div id="resultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex justify-center items-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4">
+            <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Hasil Simulasi Paket Aktif</h3>
+            <p class="text-xs text-slate-500">Evaluasi Kenaikan Jenjang Pengawas Sekolah Ahli Utama</p>
+            
+            <div class="bg-slate-50 rounded-2xl p-4 my-2 grid grid-cols-2 gap-4">
+                <div>
+                    <span class="text-xs text-slate-400 block mb-1">Skor Paket</span>
+                    <span id="modalScore" class="text-3xl font-extrabold text-indigo-900">0</span>
+                    <span class="text-xs text-slate-500"> / 100</span>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block mb-1">Jawaban Benar</span>
+                    <span id="modalCorrect" class="text-3xl font-extrabold text-emerald-600">0</span>
+                    <span id="modalTotal" class="text-xs text-slate-500"> / 10</span>
+                </div>
+            </div>
+
+            <div id="modalPredicate" class="text-xs font-semibold p-3 rounded-xl">
+                <!-- Status Kelulusan -->
+            </div>
+
+            <div class="flex space-x-2 pt-2">
+                <button onclick="closeModal()" class="w-1/3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition">
+                    Tinjau Soal
+                </button>
+                <button onclick="exportToPDF()" class="w-1/3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center">
+                    <i class="fa-solid fa-file-pdf mr-1"></i> Cetak PDF
+                </button>
+                <button onclick="resetQuiz(); closeModal();" class="w-1/3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs transition">
+                    Ulang Paket
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Naskah Laporan Tersembunyi khusus cetak PDF -->
+    <div id="pdfExportTemplate" class="hidden">
+        <div id="pdfContent" class="p-8 bg-white text-slate-900 font-sans" style="width: 790px;">
+            <div class="border-b-2 border-indigo-900 pb-4 mb-6 flex justify-between items-center">
+                <div>
+                    <h1 class="text-lg font-bold text-indigo-950 uppercase tracking-wide">Laporan Hasil Simulasi UKKJ</h1>
+                    <p class="text-xs text-slate-600">Pengawas Sekolah Ahli Madya (IV/c) ke Ahli Utama (IV/d)</p>
+                </div>
+                <div class="text-right">
+                    <span id="pdfTanggal" class=
