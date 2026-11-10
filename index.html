@@ -299,156 +299,6 @@
             <div class="bg-slate-50 rounded-2xl p-4 my-2 grid grid-cols-2 gap-4">
                 <div>
                     <span class="text-xs text-slate-400 block mb-1">Skor Paket</span>
-                    <span id="modalScore" class="text-3xl font-extrabold text-inpan id="timerDisplay">15:00</span>
-                    </div>
-                    <button onclick="resetQuiz()" class="px-3 py-1.5 text-xs text-slate-600 hover:text-red-600 bg-slate-100 hover:bg-red-50 rounded-xl transition border border-slate-200 font-medium">
-                        <i class="fa-solid fa-rotate-right mr-1"></i> Reset Paket Ini
-                    </button>
-                </div>
-            </div>
-
-            <!-- Quiz Layout: Grid (Question Box + Question Grid Navigation) -->
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <!-- Question Card (Left / 3 Cols) -->
-                <div id="questionCardBox" class="lg:col-span-3 bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
-                    <div>
-                        <!-- Tags & Indikator -->
-                        <div id="questionTags" class="flex flex-wrap gap-2 mb-3">
-                            <!-- Dynamic Tags -->
-                        </div>
-
-                        <!-- Stimulus Wacana AKM (Jika Ada) -->
-                        <div id="stimulusBox" class="hidden bg-slate-50 border-l-4 border-indigo-600 p-4 rounded-r-xl mb-4 text-xs text-slate-700 leading-relaxed font-serif">
-                            <div class="font-bold font-sans text-indigo-900 mb-1 uppercase tracking-wider flex items-center">
-                                <i class="fa-solid fa-file-lines mr-1.5"></i> Wacana Stimulus AKM / Skenario Kasus:
-                            </div>
-                            <div id="stimulusText"></div>
-                        </div>
-
-                        <!-- Question Text -->
-                        <h2 id="questionText" class="text-sm sm:text-base font-semibold text-slate-800 leading-relaxed mb-5">
-                            Memuat soal...
-                        </h2>
-
-                        <!-- Answer Options -->
-                        <div id="optionsContainer" class="space-y-2.5 mb-6">
-                            <!-- Dynamic Options -->
-                        </div>
-
-                        <!-- Hint Section (Hidden by default) -->
-                        <div id="hintBox" class="hidden bg-indigo-50 border border-indigo-200 rounded-xl p-4 mb-4 text-xs text-indigo-900">
-                            <div class="font-semibold flex items-center mb-1">
-                                <i class="fa-solid fa-circle-info mr-2 text-indigo-600"></i> Petunjuk Kata Kunci (Level 5):
-                            </div>
-                            <p id="hintText" class="text-indigo-800 leading-relaxed"></p>
-                        </div>
-
-                        <!-- Rationale / Pembahasan Box (Shown after selection) -->
-                        <div id="rationaleBox" class="hidden rounded-xl p-4 mb-4 text-xs sm:text-sm border">
-                            <!-- Dynamic Rationale -->
-                        </div>
-                    </div>
-
-                    <!-- Bottom Nav Buttons -->
-                    <div class="flex justify-between items-center pt-4 border-t border-slate-100 mt-4">
-                        <button id="hintBtn" onclick="toggleHint()" class="text-xs text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
-                            <i class="fa-regular fa-lightbulb mr-1.5 text-amber-500 text-sm"></i> Tampilkan Clue (Analisis)
-                        </button>
-
-                        <div class="flex space-x-2">
-                            <button id="prevBtn" onclick="navigateQuestion(-1)" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition disabled:opacity-40 disabled:cursor-not-allowed">
-                                <i class="fa-solid fa-arrow-left mr-1"></i> Sebelum
-                            </button>
-                            <button id="nextBtn" onclick="navigateQuestion(1)" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-md shadow-indigo-200 transition">
-                                Selanjutnya <i class="fa-solid fa-arrow-right ml-1"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Number Navigation Grid & Summary -->
-                <div class="lg:col-span-1 space-y-6">
-                    <!-- Navigasi Nomor Soal -->
-                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
-                        <h3 class="text-xs font-bold text-slate-700 mb-3 flex items-center justify-between uppercase tracking-wider">
-                            <span>Navigasi Soal</span>
-                            <span id="answeredCount" class="text-[11px] font-normal text-slate-500">0/10 Terjawab</span>
-                        </h3>
-                        <div id="questionGrid" class="grid grid-cols-5 gap-2">
-                            <!-- Dynamic Grid Buttons -->
-                        </div>
-                    </div>
-
-                    <!-- Ringkasan Nilai Card -->
-                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-5 shadow-sm">
-                        <h3 class="text-xs font-bold text-slate-300 mb-1 uppercase tracking-wider">Capaian Paket Aktif</h3>
-                        <div class="flex items-baseline space-x-2 my-2">
-                            <span id="currentScore" class="text-3xl font-extrabold text-amber-400">0</span>
-                            <span class="text-slate-400 text-xs">/ 100 poin</span>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Soal menguji **Kompetensi Level 5** (AKM Wacana & Evaluasi Kebijakan Makro).
-                        </p>
-                        <button onclick="finishQuiz()" class="w-full mt-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold text-xs uppercase tracking-wider rounded-xl transition shadow-md">
-                            Selesai & Lihat Laporan PDF
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: TIPS & STRATEGI -->
-        <section id="tipsSection" class="hidden space-y-6">
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-                <h2 class="text-lg font-bold text-indigo-950 mb-3 flex items-center">
-                    <i class="fa-solid fa-graduation-cap mr-2.5 text-amber-500"></i> Panduan & Strategi Lolos Ujikom (Ahli Madya ke Ahli Utama)
-                </h2>
-                <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
-                    Uji Kompetensi Ahli Utama berpindah dari fungsi supervisi sekolah binaan ke **kepemimpinan strategis daerah, evaluasi kebijakan publik, dan coaching for coaches**.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs sm:text-sm">
-                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
-                        <div class="text-indigo-900 font-bold text-sm mb-2 flex items-center">
-                            <i class="fa-solid fa-microscope mr-2 text-indigo-600"></i> 1. Uji Situational Judgment Test (SJT) & AKM
-                        </div>
-                        <ul class="text-slate-600 space-y-1.5 list-disc list-inside">
-                            <li><strong>Prinsip Afirmasi:</strong> Pilih opsi berorientasi pada equity (pemerataan mutu daerah) dibanding efisiensi seragam.</li>
-                            <li><strong>Berbasis Data Rapor Pendidikan:</strong> Kebijakan diawali sintesis data komprehensif PBD Daerah.</li>
-                            <li><strong>Coaching TIRTA:</strong> Gunakan dialog reflektif pemberdayaan, bukan instruksi otoriter.</li>
-                        </ul>
-                    </div>
-
-                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
-                        <div class="text-indigo-900 font-bold text-sm mb-2 flex items-center">
-                            <i class="fa-solid fa-file-pen mr-2 text-indigo-600"></i> 2. Uji Studi Kasus (Format STAR-P)
-                        </div>
-                        <ul class="text-slate-600 space-y-1.5 list-disc list-inside">
-                            <li>Structure alur: Situation &rarr; Target &rarr; Action &rarr; Result &rarr; Policy Brief.</li>
-                            <li>Fokus solusi pada perbaikan sistem regional/kabupaten, bukan kelas individual.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-4 text-center">
-                    <button onclick="switchTab('simulasi')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-semibold">Kembali ke Soal Simulasi</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Modal Hasil Ujian -->
-    <div id="resultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex justify-center items-center p-4 z-50">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4">
-            <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl">
-                <i class="fa-solid fa-trophy"></i>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900">Hasil Simulasi Paket Aktif</h3>
-            <p class="text-xs text-slate-500">Evaluasi Kenaikan Jenjang Pengawas Sekolah Ahli Utama</p>
-            
-            <div class="bg-slate-50 rounded-2xl p-4 my-2 grid grid-cols-2 gap-4">
-                <div>
-                    <span class="text-xs text-slate-400 block mb-1">Skor Paket</span>
                     <span id="modalScore" class="text-3xl font-extrabold text-indigo-900">0</span>
                     <span class="text-xs text-slate-500"> / 100</span>
                 </div>
@@ -506,7 +356,7 @@
         </div>
     </div>
 
-    <!-- Template Naskah Laporan Tersembunyi khusus cetak PDF -->
+            <!-- Template Naskah Laporan Tersembunyi khusus cetak PDF -->
     <div id="pdfExportTemplate" class="hidden">
         <div id="pdfContent" class="p-8 bg-white text-slate-900 font-sans" style="width: 790px;">
             <div class="border-b-2 border-indigo-900 pb-4 mb-6 flex justify-between items-center">
@@ -515,7 +365,7 @@
                     <p class="text-xs text-slate-600">Pengawas Sekolah Ahli Madya (IV/c) ke Ahli Utama (IV/d)</p>
                 </div>
                 <div class="text-right">
-                    <span id="pdfTanggal" class="text-[10px] text-slate-500 block">Tanggal Execution</span>
+                    <span id="pdfTanggal" class="text-[10px] text-slate-500 block">Tanggal Pelaksanaan</span>
                     <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-[10px] font-bold rounded-lg inline-block mt-1">Kompetensi Level 5 (AKM)</span>
                 </div>
             </div>
@@ -559,7 +409,7 @@
         const rawPaketData = [
             {
                 id: 1,
-                title: "Paket 1: Perumusan & Evaluasi Kebijakan Daerah",
+                title: "Paket 1: Perumusan & Evaluasi Kebijakan Pendidikan Daerah",
                 questions: [
                     {
                         questionNumber: 1,
@@ -756,7 +606,7 @@
                         question: "Bentuk bantuan yang diberikan Pengawas Ahli Utama adalah...",
                         answerOptions: [
                             { text: "Menggantikan kepala sekolah melakukan observasi ke seluruh kelas.", isCorrect: false, rationale: "Mematikan fungsi kepemimpinan kepala sekolah." },
-                            { text: "Melakukan pemodelan (modeling) teknik pasca-observasi dan melakukan kooching berpasangan bersama kepala sekolah.", isCorrect: true, rationale: "Memberikan keteladanan (modeling) dan mendampingi peningkatan kapasitas kepala sekolah." },
+                            { text: "Melakukan pemodelan (modeling) teknik pasca-observasi dan melakukan coaching berpasangan bersama kepala sekolah.", isCorrect: true, rationale: "Memberikan keteladanan (modeling) dan mendampingi peningkatan kapasitas kepala sekolah." },
                             { text: "Menyediakan draf balikan baku yang tinggal disalin oleh kepala sekolah.", isCorrect: false, rationale: "Mendorong mekanisme penyelesaian formalitas instan." },
                             { text: "Menyarankan kepala sekolah membaca buku teori supervisi.", isCorrect: false, rationale: "Pendekatan teoritis tanpa praktik langsung." }
                         ],
@@ -976,7 +826,7 @@
                         question: "Respon kepemimpinan berbasis regulasi dan integritas oleh Pengawas Ahli Utama adalah...",
                         answerOptions: [
                             { text: "Mendukung sekolah merahasiakan kasus agar reputasi daerah tidak tercoreng.", isCorrect: false, rationale: "Melanggar integritas dan membahayakan keselamatan murid." },
-                            { text: "Mengeluarakan siswa pelaku perundungan secara serentak tanpa pembinaan.", isCorrect: false, rationale: "Melanggar hak anak atas pendidikan." },
+                            { text: "Mengeluarkan siswa pelaku perundungan secara serentak tanpa pembinaan.", isCorrect: false, rationale: "Melanggar hak anak atas pendidikan." },
                             { text: "Memandu penegakan mekanisme TPPK (Tim Pencegahan & Penanganan Kekerasan), pembinaan pemulihan korban, dan pembenahan iklim sekolah.", isCorrect: true, rationale: "Solusi kelembagaan komprehensif sesuai regulasi pencegahan kekerasan nasional." },
                             { text: "Menyerahkan kasus sepenuhnya kepada orang tua murid untuk diselesaikan secara pribadi.", isCorrect: false, rationale: "Melepas tanggung jawab kelembagaan sekolah." }
                         ],
